@@ -1,0 +1,516 @@
+@import "custom-variables";
+
+.container{
+	max-width: $containerWidth;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+// HEADER START
+.header{
+	background: $generalColor;
+	padding: 35px 0;
+	height: 100px;
+	.flex-container{
+		justify-content: space-between;
+	}
+}
+.add-task{
+		width: 6em;
+		height: 6em;
+		background: $newTaskBg;
+		border-radius: 50%;
+		font-size: 1em;
+		transform: translateY(55%);
+        box-shadow: 0px 5px 16.17px 4.83px rgba(0, 0, 0, 0.08);
+    & > span{
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 4px;
+        background: #fff;
+        left: 15px;
+        top: 29px;
+        border-radius: 2px;
+        & + span{
+            transform: rotate(90deg);
+        }
+    }
+}
+.user-nav{
+	font-size: 3em;
+	color: #fff;
+	a{
+		& + a{
+			margin-left: 1.2em;
+		}
+	}
+}
+.toggle-class-type{
+	padding: 5em 0px;
+	.togle-task-list{
+		color: #bebebe;
+		font-size: 1.8em;
+		font-family: 'sf_ui_textsemibold';
+		& > *{
+			&.active{
+				color: $generalColor;
+			}
+			& + *{
+				&::before{
+					content:'/';
+					display: inline-block;
+					margin-right: .3em;
+					color: #bebebe;
+				}
+			}
+		}
+	}
+}
+// HEADER END
+
+//MAIN START
+main{
+	padding-top: 218px;
+}
+.task-day{
+	background: $generalColor;
+	padding: 1em 2em;
+	color: #fff;
+	.day{
+		font-size: 3.6em;
+		font-family: 'sf_ui_displaybold';
+	}
+	.month{
+		font-size: 1.8em;
+	}
+}
+.task-content{
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+.all-task-wrap{
+	padding: 4em 0;
+    position: relative;
+    &::before{
+        content:'';
+        display: inline-block;
+        border-left: 2px dashed $generalColor;
+        position: absolute;
+        top: 4em;
+        left: 1.8em;
+        bottom: 0;
+    }
+}
+
+.task{
+	width: 100%;
+	padding-left: 5.4em;
+	position: relative;
+	max-width: calc(600px + 5.4em);
+	&.open{
+		.task-content-wrap{
+			display: block;
+		}
+		.task-header{
+			border-radius: 1em 1em 0 0;
+		}
+	}
+	&.success{
+		.task-header{
+			background: $successBg;
+		}
+        .task-message.done{
+            display: block;
+        }
+	}
+	&.warning{
+		.task-header{
+			background: $warningBg;
+		}
+        .task-message.deadline{
+            display: block;
+        }
+	}
+    &.task-done{
+        .task-check-row.check-done{
+            display: flex;
+        }
+    }
+    &.task-current{
+        .task-check-row.check-current{
+            display: flex;
+        }
+    }
+	& + .task{
+		margin-top: 4em;
+	}
+	.task-header{
+		padding: 1.5em;
+		background: $taskColor;
+		border-radius: 1em;
+		color: #fff;
+		font-family: 'sf_ui_textlight';
+		align-items: center;
+		justify-content: space-between;
+		.short-task-text{
+			width: 80%;
+			font-size: 1.4em;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.icon-arrow{
+			font-size: .5em;
+		}
+	}
+	.task-content-wrap{
+		display: none;
+		padding: 1.5em;
+		border-radius: 0 0 1em 1em;
+		background: #fff;
+		color: #404040;
+		font-family: 'sf_ui_textlight';
+		font-size: 1.4em;
+		line-height: 1.3;
+		box-shadow: 0px 5px 16px 5px rgba(0,2,3,.08);
+		& > *{
+			& + *{
+				margin-top: 1em;
+			}
+		}
+		.task-icon{
+			width: 20px;
+            font-size: 1.4em;
+		}
+		.time-row{
+			align-items: center;
+			.time{
+				width: 90%;
+				padding-left: 10px;
+			}
+		}
+		.task-text-row{
+			.text{
+				width: 90%;
+				padding-left: 10px;
+			}
+		}
+        .task-check-row{
+            align-items: center;
+            display: none;
+            .task-icon{
+                .icon-check{
+                    color: $successBg;
+                }
+            }
+            .check{
+                width: 90%;
+                padding-left: 10px;
+                input[type="checkbox"]{
+                    display: none;
+                    & + label{
+                        cursor: pointer;
+                        margin-right: 10px;
+                    }
+                } 
+            }  
+        }
+        .task-edit-row{
+            width: 97%;
+            justify-content: flex-end;
+        }
+	}
+    .task-message{
+        display: none;
+        padding-top: 1.5em;
+		font-size: 1.6em;
+        width: 80%;
+        .message-row{
+            align-items: center;
+            .task-icon{
+                font-size: 2em;
+                margin-right: 20px;
+            }
+        }
+        &.deadline{
+            color: $warningBg;
+        }
+        &.done{
+            color: $successBg;
+        }
+        @media (min-width: 1230px){
+            position: absolute;
+            left: 700px;
+            top: -19px;
+        }
+    } 
+}
+.to-do-time{
+	width: 3.333em;
+	height: 3.333em;
+	font-size: 1.2em;
+	background: $generalColor;
+	color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+//EDIT TASK START
+.overlay{
+    background-color: rgba(0, 0, 0, .83);
+    position: fixed;
+    opacity: 0;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: all .5s linear;
+    &.open{
+      z-index: 9999;
+      opacity: 1;
+    }
+}
+
+.edit-task{
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+    padding: 5em 0;
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(100vh);
+    transition: all .5s linear;
+    &.open{
+      z-index: 99999;
+      opacity: 1;
+      transform: translateY(0vh);
+    }
+    @media(min-width: 1024px){
+        min-height: 50vh;
+    }
+    @media (max-height: 630px){
+        top: 0;
+        overflow: auto;
+    }
+    .input-group{
+        &.flex-container{
+            flex-direction: column;
+            @media(min-width: 1024px){
+                flex-direction: row;
+            }
+        }
+    }
+    .title{
+        font-size: 1.8em;
+        color: #767676;
+        margin-bottom: 4em;;
+    }
+    .icon-bell{
+        font-size: 2em;
+        color: $generalColor;
+        margin-right: 1.3em;
+    }
+    .task-bell{
+        display: flex;
+        align-items: center;
+        font-size: 1.6em;
+        color: #404040;
+    }
+    .input-group{
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        @media(min-width: 480px){
+            align-items: center;
+        }
+         @media(min-width: 1024px){
+            justify-content: flex-start;
+        }
+    }
+    input{
+        font-size: 3em;
+        margin-top: 1.5em;
+        padding-left: 2.3em;
+        color: #404040;
+        &[type="date"]{
+            @media(min-width: 480px){
+                padding-left: 5em;
+            }
+            @media(min-width: 1024px){
+                padding-left: 0;
+            }
+        }
+        @media(min-width: 1024px){
+            margin-top: 0;
+            margin-left: 2em;
+            padding-left: 0;
+        }
+    }
+    .texarea-wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 5em 0;
+        label{
+            font-size: 1.4em;
+            color: #424242;
+            order: 1;
+        }
+        textarea{
+            line-height: 60px;
+            border-bottom: 1px solid #d9d9d9;
+            order: 2;
+            font-size: 1.4em;
+            color: #424242;
+            &:focus{
+                border-color: $generalColor;
+                & + label{
+                    color: $generalColor;
+                }
+            }
+        }
+        .symbol-count{
+            font-size: 1.4em;
+            color: #424242;
+            margin-top: 2em;
+            order: 3;
+            align-self: flex-end;
+        } 
+    }
+    .add-task-btn{
+        padding: .8em 4em;
+        margin-top: .5em;
+        font-size: 2em;
+        text-transform: uppercase;
+        background: $generalColor;
+        border-radius: 10px;
+        color: #fff;
+        width: 100%;
+        @media(min-width: 1024px){
+            width: auto;
+            align-self: flex-end;
+        }
+    } 
+}
+//EDIT TASK END
+//LOG IN START
+.form-wrap{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/login-320-bg.jpg') no-repeat top center;
+    background-size: cover;
+    padding: 0 1.5em;
+    @media(min-width: 600px){
+            background: url('../img/login-bg.jpg') no-repeat top center;
+        }
+    form{
+        background: #fff;
+        border-radius: 10px;
+        padding: 4em 2.5em;
+        min-width: 290px;
+        box-shadow: 0px 5px 16.17px 4.83px rgba(0, 0, 0, 0.08);
+        @media(min-width: 1024px){
+            min-width: 346px;
+            padding: 4.5em;
+        }
+    }
+}
+
+.input-group-lg{
+    &.lg-check{
+        justify-content: center;
+        input{
+            display: none;
+            &:checked{
+                & + label::before{
+                    background: url('../img/check_box.svg') no-repeat top center;
+                    border-color: transparent;
+                } 
+            }
+        }
+        label{
+            color: #a0a0a0;
+            font-size: 1.4em;
+            &::before{
+                content: '';
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+                border: 2px solid #a0a0a0;
+                border-radius: 1px;
+                vertical-align: middle; 
+                margin-right: 1em;
+            }
+        }
+    }
+    input[type="text"]{
+        background: transparent;
+        border-bottom: 1px solid #a0a0a0;
+        padding-bottom: .5em;
+        color: #a0a0a0;
+        font-size: 1.8em;
+        width: 90%;
+        order: 2;
+        &:focus{
+            border-color: $generalColor;
+            & + label{
+                color: $generalColor;
+            }
+            & > .icon{
+                color: $generalColor;
+            }
+        }
+    }
+    & + .input-group-lg{
+        margin-top: 1.5em;
+    }
+    .lg-icon{
+        display: flex;
+        align-self: center;
+        width: 20px;
+        margin-right: 3em;
+        .icon{
+            font-size: 2.5em;
+            color: #a0a0a0;
+        }
+        &.flex-container{
+            
+        }
+    }
+    .text-lg{
+        &.flex-container{
+            flex-direction: column;
+        }
+        label{
+            font-size: 1.2em;
+            color: transparent;
+            margin-bottom: .5em;
+            order: 1;
+        }
+    }
+    .lg-btn{
+        padding: .5em 4em .3em 4em;
+        margin: 1.5em 0;
+        font-size: 1.8em;
+        text-transform: uppercase;
+        background: $generalColor;
+        border-radius: 10px;
+        color: #fff;
+        width: 100%;
+    }
+}
+//LOG IN END
+
