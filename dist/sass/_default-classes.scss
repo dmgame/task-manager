@@ -1,0 +1,48 @@
+@import "custom-variables";
+
+%flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.fixed-to-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: $bodyBg;
+	z-index: 999;
+}
+
+.blue-color {
+	color: $generalColor;
+}
+
+.grey-color {
+	color: $taskColor;
+}
+
+.awaiting {
+	color: $awaitingColor;
+}
+
+.not-active {
+	color: $notActiveColor;
+}
+
+.login-color-grey {
+	color: $greyColor;
+}
+
+.btn {
+	display: inline-block;
+	background: $generalColor;
+	border-radius: 9px;
+	color: #fff;
+	text-transform: uppercase;
+	width: 100%;
+	
+	&:hover {
+		background: $generalColorHover;
+	}
+}

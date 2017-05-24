@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task-manager</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<!-- HEADER START -->
+	
+	<div class="fixed-to-top">
+		<div class="header">
+			<div class="container">
+				<div class="flex-container direction-row space-between">
+					<button class="add-task">
+						<span class="icon icon-add"></span>
+					</button>
+					<nav class="user-nav">
+						<a href="#"><span class="icon icon-user"></span></a>
+						<a href="#"><span class="icon icon-logout"></span></a>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="toggle-task-type">
+			<div class="container">
+				<nav class="toggle-task-list">
+					<a href="#active-task" class="active">Активные задачи</a>
+					<a href="#all-task">Все задачи</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- HEADER END -->
+	<!-- MAIN START -->
+	<div class="main">
+		<div class="task-content active" id="active-task">
+			<div class="container">
+				<div class="date-today">
+					<span class="date">09</span>
+					<span class="month">фев</span>
+				</div>
+				<div class="all-task-wrap">
+					<!--ONE TASK-->
+					<div class="task-wrap">
+						<div class="task open warning">
+							<div class="to-do-time">9:00</div>
+							<div class="task-all-content">
+								<div class="task-header">
+									<div class="slide-toggle-btn">
+										<span class="icon icon-arrow"></span>
+									</div>
+									<div class="short-task-text">
+										Дом: Отдать в химчистку куртку
+									</div>
+									<div class="remove">
+										<span class="icon icon-cancel"></span>
+									</div>
+								</div>
+								<div class="task-content-wrap">
+									<div class="time-row">
+										<div class="task-icon">
+											<span class="icon icon-time"></span>
+										</div>
+										<span class="time">9:00</span>
+										<div class="alert">
+											<span class="icon icon-bell not-active"></span>
+										</div>
+									</div>
+									<div class="task-text-row">
+										<div class="task-icon">
+											<span class="icon icon-list"></span>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
+										mollitia labore assumenda.</p>
+									</div>
+									<div class="task-check-row">
+										<form>
+											<div class="task-icon">
+												<span class="icon icon-warning"></span>
+											</div>
+											<input type="checkbox" name="todo-warning" id="todo-warning">
+											<label for="todo-warning">Вы не выполнили эту задачу</label>
+										</form>
+									</div>
+									<div class="task-edit-row">
+										<span class="icon icon-edit not-active"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="info-block warning">
+							<div class="info-icon">
+								<span class="icon icon-warning"></span>
+							</div>
+							<span class="info-text">Вы не выполнили эту задачу</span>
+						</div>
+					</div>
+					
+					<div class="task-wrap">
+						<div class="task open">
+							<div class="to-do-time">10:00</div>
+							<div class="task-all-content">
+								<div class="task-header">
+									<div class="slide-toggle-btn">
+										<span class="icon icon-arrow"></span>
+									</div>
+									<div class="short-task-text">
+										Работа: Закончить верстку сайта
+									</div>
+									<div class="remove">
+										<span class="icon icon-cancel"></span>
+									</div>
+								</div>
+								<div class="task-content-wrap">
+									<div class="time-row">
+										<div class="task-icon">
+											<span class="icon icon-time"></span>
+										</div>
+										<span class="time">10:00</span>
+										<div class="alert">
+											<span class="icon icon-bell blue-color"></span>
+										</div>
+									</div>
+									<div class="task-text-row">
+										<div class="task-icon">
+											<span class="icon icon-list"></span>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
+										mollitia labore assumenda.</p>
+									</div>
+									<div class="task-check-row">
+										<form>
+											<div class="task-icon">
+												<span class="icon awaiting"><span class="circle"></span></span>
+											</div>
+											<input type="checkbox" name="todo" id="todo">
+											<label for="todo">Задача еще не выполнена</label>
+										</form>
+									</div>
+									<div class="task-edit-row">
+										<span class="icon icon-edit not-active-color"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="task-wrap">
+						<div class="task open success">
+							<div class="to-do-time">13:30</div>
+							<div class="task-all-content">
+								<div class="task-header">
+									<div class="slide-toggle-btn">
+										<span class="icon icon-arrow"></span>
+									</div>
+									<div class="short-task-text">
+										Дом: Закупить продукты в супермаркете
+									</div>
+									<div class="remove">
+										<span class="icon icon-cancel"></span>
+									</div>
+								</div>
+								<div class="task-content-wrap">
+									<div class="time-row">
+										<div class="task-icon">
+											<span class="icon icon-time"></span>
+										</div>
+										<span class="time">13:30</span>
+										<div class="alert">
+											<span class="icon icon-bell not-active"></span>
+										</div>
+									</div>
+									<div class="task-text-row">
+										<div class="task-icon">
+											<span class="icon icon-list"></span>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
+										mollitia labore assumenda.</p>
+									</div>
+									<div class="task-check-row">
+										<form>
+											<div class="task-icon">
+												<span class="icon icon-check"></span>
+											</div>
+											<input type="checkbox" name="todo-success" id="todo-success">
+											<label for="todo-success">Я выполнил задачу</label>
+										</form>
+									</div>
+									<div class="task-edit-row">
+										<span class="icon icon-edit not-active"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="info-block success">
+							<div class="info-icon">
+								<span class="icon icon-star"></span>
+							</div>
+							<span class="info-text">Поздравляем! Вы справились с задачей</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="task-content" id="all-task">
+			<div class="container">
+				<div class="date-today">
+					<span class="date">09</span>
+					<span class="month">фев</span>
+				</div>
+				<div class="all-task-wrap">
+					<!--ONE TASK-->
+					<div class="task-wrap">
+						<div class="task open">
+							<div class="to-do-time">10:00</div>
+							<div class="task-all-content">
+								<div class="task-header">
+									<div class="slide-toggle-btn">
+										<span class="icon icon-arrow"></span>
+									</div>
+									<div class="short-task-text">
+										Работа: Закончить верстку сайта
+									</div>
+									<div class="remove">
+										<span class="icon icon-cancel"></span>
+									</div>
+								</div>
+								<div class="task-content-wrap">
+									<div class="time-row">
+										<div class="task-icon">
+											<span class="icon icon-time"></span>
+										</div>
+										<span class="time">10:00</span>
+										<div class="alert">
+											<span class="icon icon-bell blue-color"></span>
+										</div>
+									</div>
+									<div class="task-text-row">
+										<div class="task-icon">
+											<span class="icon icon-list"></span>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
+										mollitia labore assumenda.</p>
+									</div>
+									<div class="task-check-row">
+										<form>
+											<div class="task-icon">
+												<span class="icon awaiting"><span class="circle"></span></span>
+											</div>
+											<input type="checkbox" name="todo" id="todo">
+											<label for="todo">Задача еще не выполнена</label>
+										</form>
+									</div>
+									<div class="task-edit-row">
+										<span class="icon icon-edit not-active-color"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="task-wrap">
+						<div class="task open success">
+							<div class="to-do-time">13:30</div>
+							<div class="task-all-content">
+								<div class="task-header">
+									<div class="slide-toggle-btn">
+										<span class="icon icon-arrow"></span>
+									</div>
+									<div class="short-task-text">
+										Дом: Закупить продукты в супермаркете
+									</div>
+									<div class="remove">
+										<span class="icon icon-cancel"></span>
+									</div>
+								</div>
+								<div class="task-content-wrap">
+									<div class="time-row">
+										<div class="task-icon">
+											<span class="icon icon-time"></span>
+										</div>
+										<span class="time">13:30</span>
+										<div class="alert">
+											<span class="icon icon-bell not-active"></span>
+										</div>
+									</div>
+									<div class="task-text-row">
+										<div class="task-icon">
+											<span class="icon icon-list"></span>
+										</div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
+										mollitia labore assumenda.</p>
+									</div>
+									<div class="task-check-row">
+										<form>
+											<div class="task-icon">
+												<span class="icon icon-check"></span>
+											</div>
+											<input type="checkbox" name="todo-success" id="todo-success">
+											<label for="todo-success">Я выполнил задачу</label>
+										</form>
+									</div>
+									<div class="task-edit-row">
+										<span class="icon icon-edit not-active"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="info-block success">
+							<div class="info-icon">
+								<span class="icon icon-star"></span>
+							</div>
+							<span class="info-text">Поздравляем! Вы справились с задачей</span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<!-- MAIN END -->
+
+	<!-- EDIT TASK START -->
+	<div class="overlay"></div>
+	<div class="edit-task">
+		<div class="container">
+			<div class="close-edit">
+				<span class="icon icon-cancel"></span>
+			</div>
+			<div class="title">
+				<span>Новая задача</span>
+			</div>
+			<div class="input-group flex-container">
+				<div class="task-bell">
+					<span class="icon icon-bell"></span>
+					<span>Оповестить за</span>
+				</div>
+				<input type="time" name="task-time" id="task-time">
+				<input type="date" name="task-date" id="task-date">
+			</div>
+			<div class="textarea-wrap">
+				<textarea name="task-text" id="task-text"></textarea>
+				<label for="task-text">Ваша задача</label>
+				<div class="symbol-count">
+					<span class="count">0</span>
+					<span class="max-count">/1000</span>
+				</div>
+			</div>
+			<div class="edit-task-btn-wrap">
+				<button type="button" class="btn edit-task-btn">Добавить</button>
+			</div>
+		</div>
+	</div>
+	<!-- EDIT TASK END -->
+	
+	<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+            
+	<script src="js/plugin.js"></script>
+</body>
+</html>

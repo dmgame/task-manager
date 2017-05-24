@@ -125,6 +125,7 @@
 }
 .icon-check {
 	@include icon(check);
+	color: $successBg;
 }
 .icon-check_box {
 	@include icon(check_box);
@@ -152,6 +153,7 @@
 }
 .icon-star {
 	@include icon(star);
+	color: $successBg;
 }
 .icon-time {
 	@include icon(time);
@@ -161,4 +163,5 @@
 }
 .icon-warning {
 	@include icon(warning);
+	color: $warningBg;
 }

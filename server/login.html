@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task-manager || Login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="login-container">
+		<div class="login-form">
+			<form name="loginForm">
+				<div class="login-row">
+					<label class="login-icon">
+						<span class="icon icon-account_circle-grey login-color-grey"></span>
+					</label>
+					<input type="email" name="login" placeholder="E-mail" class="form-control required">
+				</div>
+				<div class="login-row">
+					<label class="login-icon">
+						<span class="icon icon-lock-grey login-color-grey"></span>
+					</label>
+					<input type="password" name="password" placeholder="Пароль" class="form-control required">
+				</div>
+				<div class="login-btn-wrap">
+					<input type="submit" name="loginBtn" value="Войти" class="btn login-btn">
+				</div>
+				<div class="check-pass">
+					<input type="checkbox" name="save-passw" id="savePassw">
+					<label for="savePassw">Сохранить пароль</label>
+				</div>
+				<div class="warning-msg"></div>
+			</form>
+		</div>
+	</div>
+	
+	<script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+            
+    <script src="js/login.js"></script>
+</body>
+</html>
