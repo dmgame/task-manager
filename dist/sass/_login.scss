@@ -1,0 +1,116 @@
+@import "custom-variables";
+
+.login-conteiner{
+	height: 100vh;
+	width: 100%;
+	background: url("../img/login-bg-320px.jpg") no-repeat top center;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	@media (min-width: 1024px){
+		background: url("../img/login-bg-1920px.jpg") no-repeat top center;
+	}
+	form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-width: 29em;
+		background: #fff;
+		border-radius: 0.6em;
+		padding: 5em 0 4.5em 0;
+		margin: 0 1.6em 0 1.6em;
+		box-shadow: 0px 5px 16.17px 4.83px rgba(0, 2, 3, 0.08);
+		@media (min-width: 1024px){
+			width: 34.4em;
+		}
+		.input-group{
+			color: #9e9e9e;
+			font-size: 1.8em;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 100%;
+			padding: 0.777em 1.389em 0 1.389em;
+			@media (min-width: 1024px){
+				padding: 0.777em 2.77em 0 2.78em;
+			}
+			
+			input[type="text"], input[type="password"]{
+				border-bottom: 1px solid #9e9e9e;
+				width: 100%;
+				padding: 10px 5px 15px 0;
+				font-size: 1em;
+				color: #9e9e9e;
+				&:hover{
+					color: #00a1f1;
+					border-color: #00a1f1;
+				}
+			}
+			label{
+				display: flex;
+				cursor: pointer;
+				align-items: center;
+				span{
+					margin-right: 1.38em;
+					&.icon{
+						font-size: 1.333em;
+						&:hover{
+							color: #00a1f1;
+						}
+					}
+				}
+			}
+			.form-btn{
+				height: 2.22em;
+				width: 100%;
+				color: #fff;
+				font-size: 1em;
+				font-weight: bold;
+				background: #00a1f1;
+				border-radius: 10px;
+				cursor: pointer;
+				margin-top: 1.44em;
+			}
+		}
+		input[type="checkbox"]{
+			display: none;		
+		}
+		.input-checkbox{
+			justify-content: center;
+			margin-top: 0.888em;
+			span.icon{
+				margin-right: 0.625em;
+			}
+			span.icon-check_box{
+				display: none;
+			}
+			input[type="checkbox"]{
+				& + label{
+					font-size: 0.778em;
+					span.icon{
+						font-size: 1.29em;
+					}
+				}
+				&:checked{
+					& + label{
+						span.icon-check_box{
+							display: inline-block;
+							color: #00a1f1;
+						}
+						span.icon-check_box_outline{
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	.errorText {
+		color: red;
+    	padding-top: 25px;
+    	font-size: 12px;
+	}
+}

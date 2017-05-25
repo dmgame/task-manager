@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<!--Header start-->
+	<div class="fixed-to-top">
+		<div class="header">
+			<div class="conteiner">
+				<div class="flex-conteiner direction-row space-between">
+					<button class="add-task">
+						<span></span>
+						<span></span>
+					</button>
+					<ul class="user-nav">
+						<li><a href="login.html"><span class="icon icon-user"></span></a></li>
+						<li><a href="#"><span class="icon icon-logout"></span></a></li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+		<div class="toggle-task-type">
+			<div class="conteiner">
+				<ul class="toggle-task-list">
+					<li class="active"><a href="#">Активные задачи</a></li>
+					<li><a href="#">Все задачи</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+		
+	<!--Header end-->
+	<!--Main start-->
+	<div class="main">		
+		<div class="task-content" id="all-task">
+			<div class="conteiner">
+				<div class="today-day">
+					<span class="day">09</span>
+					<span class="month">фев</span>
+				</div>
+				<div class="all-task-wrap">
+					<!--ONE TASK-->
+					<div class="task-wrap">
+						<div class="task open">
+						<div class="to-do-time">9:00</div>
+						<div class="task-header">
+							<div class="slide-toggle-btn">
+								<span class="icon icon-arrow"></span>
+							</div>
+							<div class="short-task-text">
+								Какой то текст
+							</div>
+							<div class="remove">
+								<span class="icon icon-cancel"></span>
+							</div>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<span class="time">9:00</span>
+								<div class="alert">
+									<span class="icon icon-bell blue-color"></span>
+								</div>
+							</div>
+							<div class="task-text-row">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas placeat laudantium et? Veritatis, suscipit, explicabo! Neque odio non omnis quia magni ipsa deleniti cumque quas? Magni corporis minus, quibusdam soluta?</p>
+							</div>
+							<div class="task-check-row">
+								<form>
+									<div class="task-icon">
+										<span class="icon icon-check-red"></span>
+									</div>
+									<input type="checkbox" name="todo" id="todotask-1">
+									<label for="todotask-1">Задача еще не выполнена</label>
+								</form>
+							</div>
+							<div class="task-edit-row">
+								<span class="icon icon-edit gray-color"></span>
+							</div>
+						</div>
+						</div>
+						<div class="info-block warning">
+						<div class="info-icon">
+							<span class="icon icon-warning"></span>
+						</div>
+						<span>Вы не выполнили эту задачу</span>
+						</div>
+					</div>
+					<div class="task-wrap">
+						<div class="task warning">
+						<div class="to-do-time">9:00</div>
+						<div class="task-header">
+							<div class="slide-toggle-btn">
+								<span class="icon icon-arrow"></span>
+							</div>
+							<div class="short-task-text">
+								Какой то текст
+							</div>
+							<div class="remove">
+								<span class="icon icon-cancel"></span>
+							</div>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<span class="time">9:00</span>
+								<div class="alert">
+									<span class="icon icon-bell blue-color"></span>
+								</div>
+							</div>
+							<div class="task-text-row">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas placeat laudantium et? Veritatis, suscipit, explicabo! Neque odio non omnis quia magni ipsa deleniti cumque quas? Magni corporis minus, quibusdam soluta?</p>
+							</div>
+							<div class="task-check-row">
+								<form>
+									<div class="task-icon">
+										<span class="icon icon-check"></span>
+									</div>
+									<input type="checkbox" name="todo" id="todotask-2">
+									<label for="todotask-2">Задача еще не выполнена</label>
+								</form>
+							</div>
+							<div class="task-edit-row">
+								<span class="icon icon-edit gray-color"></span>
+							</div>
+						</div>
+						</div>
+						<div class="info-block warning">
+						<div class="info-icon">
+							<span class="icon icon-warning"></span>
+						</div>
+						<span>Вы не выполнили эту задачу</span>
+						</div>
+					</div>
+					<div class="task-wrap">
+						<div class="task success open">
+						<div class="to-do-time">9:00</div>
+						<div class="task-header">
+							<div class="slide-toggle-btn">
+								<span class="icon icon-arrow"></span>
+							</div>
+							<div class="short-task-text">
+								Какой то текст
+							</div>
+							<div class="remove">
+								<span class="icon icon-cancel"></span>
+							</div>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<span class="time">9:00</span>
+								<div class="alert">
+									<span class="icon icon-bell blue-color"></span>
+								</div>
+							</div>
+							<div class="task-text-row">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas placeat laudantium et? Veritatis, suscipit, explicabo! Neque odio non omnis quia magni ipsa deleniti cumque quas? Magni corporis minus, quibusdam soluta?</p>
+							</div>
+							<div class="task-check-row">
+								<form>
+									<div class="task-icon">
+										<span class="icon icon-check"></span>
+									</div>
+									<input type="checkbox" name="todo" id="todotask-3">
+									<label for="todotask-3">Я выполнил задачу</label>
+								</form>
+							</div>
+							<div class="task-edit-row">
+								<span class="icon icon-edit gray-color"></span>
+							</div>
+						</div>
+						</div>
+						<div class="info-block success">
+						<div class="info-icon">
+							<span class="icon icon-star"></span>
+						</div>
+						<span>Поздравляем! Вы справились с задачей</span>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Main end-->
+</body>
+</html>

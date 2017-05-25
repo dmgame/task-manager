@@ -1,6 +1,6 @@
 @import "custom-variables";
 
-.flex-container{
+%flex-conteiner{
 	display: flex;
 	flex-direction: row;
 }
@@ -9,7 +9,12 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 999;
+	z-index: 9999;
 	background: #fff;
 }
-
+.blue-color{
+	color: $generalColor;
+}
+.gray-color{
+	color: #bdbdbd;
+}

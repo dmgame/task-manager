@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-conteiner">
+	<form name="loginForm">
+		<div class="input-group">
+			<label for="email"><span class="icon icon-account_circle-grey"></span></label>
+			<input type="text" name="login" class="required" id="email" placeholder="E-mail">
+		</div>
+		<div class="input-group">
+			<label for="password"><span class="icon icon-lock-grey"></span></label>
+			<input type="password" name="password" class="required" id="password" placeholder="Пароль">
+		</div>
+		<div class="input-group">
+			<input type="submit" value="ВОЙТИ" class="form-btn">
+		</div>
+		<div class="input-group input-checkbox">
+			<input type="checkbox" name="save-passw" id="save-password">
+			<label for="save-password">
+				<span class="icon icon-check_box_outline"></span>
+				<span class="icon icon-check_box"></span>Сохранить пароль
+			</label>
+		</div>
+	</form>
+</div>
+
+<!--jQwery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+  			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  			crossorigin="anonymous">
+  	</script>
+  	<script src="js/login.js"></script>
+
+
+</body>
+</html>
