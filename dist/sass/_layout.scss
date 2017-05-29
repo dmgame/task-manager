@@ -74,9 +74,7 @@
 			@media (min-width: 1024px){
 				font-size: 3.8em;
 			}
-			&.active{
-				color: $generalColor;
-			}
+			
 			& + li {
 				margin-left: 5px;
 				&::before{
@@ -85,6 +83,9 @@
 					margin-right: 5px;
 					color: #bebebe;
 				}
+			}
+			a.active{
+				color: $generalColor;
 			}
 		}
 	}
@@ -118,6 +119,12 @@
 		padding-top: 310px;
 	}
 }
+.task-content{
+	display: none;
+	&.active{
+		display: block;
+	}
+}
 .all-task-wrap{
 	padding: 4em 0;
 	position: relative;
@@ -139,209 +146,220 @@
 	}
 }
 .task-wrap{
+	width: 100%;
+	position: relative;
+	
+	.task{
 	display: flex;
 	flex-direction: column;
-	@media (min-width: 1024px){
-		display: flex;
-		flex-direction: row;
-	}
-	.info-block{
-		padding: 2em 0 0 5.4em;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
 		@media (min-width: 1024px){
 			display: flex;
-			padding: 1.4em 0 0 7em;
-			align-items: flex-start;
+			flex-direction: row;
 		}
-		.icon{
-			font-size: 3.2em;
+		& + .task{
+			margin-top: 4em;
 			@media (min-width: 1024px){
-				font-size: 4.2em;
+				margin-top: 5em;
 			}
 		}
-		
-		span{
-			font-size: 1.6em;
-			padding-right: 20px;
-			@media (min-width: 1024px){
-				font-size: 3em;
-				padding-right: 30px;
+		&.open{
+			.content-block {
+				.task-content-wrap{
+					display: block;
+				}
+				.task-header{
+					border-radius: 1em 1em 0 0;
+				}
 			}
 		}
 		&.warning{
-			color: $warningBg;
+			.content-block{
+				.task-header{
+				background: $warningBg;
+				}
+			}
 		}
 		&.success{
-			color: $successBg;
+			.content-block{
+				.task-header{
+					background: $successBg;
+				}
+			}
 		}
 		
-	}
-	& + .task-wrap{
-		margin-top: 4em;
-		@media (min-width: 1024px){
-			margin-top: 5em;
-		}
-	}
-}
-.task{
-	width: 100%;
-	position: relative;
-	padding-left: 5.4em;
-	max-width: calc( 600px + 5.4em);
-	&.open{
-		.task-content-wrap{
-			display: block;
-		}
-		.task-header{
-			border-radius: 1em 1em 0 0;
-		}
-	}
-	&.warning{
-		.task-header{
-			background: $warningBg;
-		}
-	}
-	&.success{
-		.task-header{
-			background: $successBg;
-		}
-	}
-	@media (min-width: 1024px){
-		padding-left: 11.2em;
-		max-width: calc( 600px + 11.2em);
-	}
-	
-	.task-header{
-		padding: 1.5em;
-		background: $taskColor;
-		border-radius: 1em;
-		color: #fff;
-		font-family: 'sf_ui_textlight';
-		cursor: pointer;
-		@extend %flex-conteiner;
-    	justify-content: space-between;
-    	align-items: center;
-		@media (min-width: 1024px){
-			padding: 2em 3em;
-		}
-		.slide-toggle-btn{
-			font-size: .6em;
+		.info-block{
+			padding: 2em 0 0 5.4em;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
 			@media (min-width: 1024px){
+				display: flex;
+				padding: 1.4em 0 0 7em;
+				align-items: flex-start;
+			}
+			.icon{
+				font-size: 3.2em;
+				@media (min-width: 1024px){
+					font-size: 4.2em;
+				}
+			}
+			span{
 				font-size: 1.6em;
-			}
-		}
-		.short-task-text{
-			flex-basis: 80%;
-			font-size: 1.4em;
-			white-space: nowrap;
-    		overflow: hidden;
-    		text-overflow: ellipsis;
-    		@media (min-width: 1024px){
-    			font-size: 3em;
-    		}
-		}
-		.remove{
-			font-size: 1em;
-			@media (min-width: 1024px){
-				font-size: 2.5em;
-			}
-		}
-	}
-	.task-content-wrap{
-		display: none;
-		padding: 1.5em;
-		border-radius: 0 0 1em 1em;
-		background: #fff;
-		color: #404040;
-		font-family: 'sf_ui_textlight';
-		font-size: 1.4em;
-  		box-shadow: 0px 5px 16.17px 4.83px rgba(0, 2, 3, 0.08);
-		@media (min-width: 1024px){
-			padding: 1.2em;
-			font-size: 2.5em;
-		}
-		.task-icon{
-			width: 20px;
-			@media (min-width: 1024px){
-				width: 36px;
-			}
-		}
-		.icon{
-			font-size: 1.43em;
-			@media (min-width: 1024px){
-				font-size: 1.2em;
-			}
-		}
-		.time-row{
-			@extend %flex-conteiner;
-    		align-items: center;
-    		.time{
-    			width: 90%;
-    			padding-left: 10px;
-    			font-weight: bold;
-    			@media (min-width: 1024px){
-    				padding-left: 15px;
-    			}
-    		}
-		}
-		.task-text-row{
-			@extend %flex-conteiner;
-			p{
-				width: 90%;
-				padding-left: 10px;
-				line-height: 1.3;
+				padding-right: 20px;
 				@media (min-width: 1024px){
-    				padding-left: 15px;
-    			}
+					font-size: 3em;
+					padding-right: 30px;
+				}
 			}
-		}
-		.task-check-row{
-			form{
-				@extend %flex-conteiner;
-				align-items: center;
+			&.warning{
+				color: $warningBg;
 			}
-			input[type="checkbox"]{
-				display: none;
-			}
-			label{
-				padding-left: 10px;
-				@media (min-width: 1024px){
-    				padding-left: 15px;
-    			}
-			}
-			.icon-check{
+			&.success{
 				color: $successBg;
+			}	
+		}
+		.content-block{
+			display: flex;
+			flex-direction: column;
+			padding-left: 5.4em;
+			max-width: calc( 600px + 5.4em);
+			width: 100%;
+			@media (min-width: 1024px){
+				padding-left: 11.2em;
+				max-width: calc( 600px + 11.2em);
 			}
-			.icon-check-red{
-				display: inline-block;
+			.task-header{
+				padding: 1.5em;
+				background: $taskColor;
+				border-radius: 1em;
+				color: #fff;
+				font-family: 'sf_ui_textlight';
+				cursor: pointer;
+				@extend %flex-conteiner;
+		    	justify-content: space-between;
+		    	align-items: center;
+				@media (min-width: 1024px){
+					padding: 2em 3em;
+				}
+				.slide-toggle-btn{
+					font-size: .6em;
+					@media (min-width: 1024px){
+						font-size: 1.6em;
+					}
+				}
+				.short-task-text{
+					flex-basis: 80%;
+					font-size: 1.4em;
+					white-space: nowrap;
+		    		overflow: hidden;
+		    		text-overflow: ellipsis;
+		    		@media (min-width: 1024px){
+		    			font-size: 3em;
+		    		}
+				}
+				.remove{
+					font-size: 1em;
+					@media (min-width: 1024px){
+						font-size: 2.5em;
+					}
+				}
+			}
+			.task-content-wrap{
+				display: none;
+				padding: 1.5em;
+				border-radius: 0 0 1em 1em;
 				background: #fff;
-				border: 1px solid red;
-				border-radius: 50%;
-				width: 20px;
-				height: 20px;
+				color: #404040;
+				font-family: 'sf_ui_textlight';
+				font-size: 1.4em;
+		  		box-shadow: 0px 5px 16.17px 4.83px rgba(0, 2, 3, 0.08);
 				@media (min-width: 1024px){
-					width: 30px;
-					height: 30px;
+					padding: 1.2em;
+					font-size: 2.5em;
+				}
+				.task-icon{
+					width: 20px;
+					@media (min-width: 1024px){
+						width: 36px;
+					}
+				}
+				.icon{
+					font-size: 1.43em;
+					@media (min-width: 1024px){
+						font-size: 1.2em;
+					}
+				}
+				.time-row{
+					@extend %flex-conteiner;
+		    		align-items: center;
+		    		.time{
+		    			width: 90%;
+		    			padding-left: 10px;
+		    			font-weight: bold;
+		    			@media (min-width: 1024px){
+		    				padding-left: 15px;
+		    			}
+		    		}
+				}
+				.task-text-row{
+					@extend %flex-conteiner;
+					p{
+						width: 90%;
+						padding-left: 10px;
+						line-height: 1.3;
+						@media (min-width: 1024px){
+		    				padding-left: 15px;
+		    			}
+					}
+				}
+				.task-check-row{
+					form{
+						@extend %flex-conteiner;
+						align-items: center;
+					}
+					input[type="checkbox"]{
+						display: none;
+					}
+					label{
+						padding-left: 10px;
+						@media (min-width: 1024px){
+		    				padding-left: 15px;
+		    			}
+					}
+					.icon-check{
+						color: $successBg;
+					}
+					.icon-check-red{
+						display: inline-block;
+						background: #fff;
+						border: 1px solid red;
+						border-radius: 50%;
+						width: 20px;
+						height: 20px;
+						@media (min-width: 1024px){
+							width: 30px;
+							height: 30px;
+						}
+					}
+				}
+				.task-edit-row{
+					@extend %flex-conteiner;
+					justify-content: flex-end;
+				}
+				& > *{
+					& + *{
+						margin-top: 1.077em;
+						@media (min-width: 1024px){
+							margin-top: 0.96em;
+						}
+					}
 				}
 			}
-
 		}
-		.task-edit-row{
-			@extend %flex-conteiner;
-			justify-content: flex-end;
-		}
-		& > *{
-			& + *{
-				margin-top: 1.077em;
-				@media (min-width: 1024px){
-					margin-top: 0.96em;
-				}
-			}
-		}
-	}
+	}	
 }
+
+
 .to-do-time{
 	width: 3.3333em;
 	height: 3.3333em;
@@ -364,23 +382,38 @@
 	}
 }
 
+//edit task start
 .overlay{
 	background-color: rgba(0, 0, 0, 0.83);
 	position: fixed;
-	z-index: 9999;
+	opacity: 0;
+	z-index: -1;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
+	transition: all .5s linear;
+	&.open{
+		z-index: 9999;
+		opacity: 1;
+	}
 }
 .edit-task{
 	background-color: #fff;
 	width: 100%;
 	padding: 5em 0;
 	height: auto;
-	z-index: 99999;
+	z-index: -1;
 	position: fixed;
 	bottom: 0;
+	opacity: 0;
+	transform: translateY(100vh);
+	transition: all .5s linear;
+	&.open{
+		z-index: 99999;
+		opacity: 1;
+		transform: translateY(0vh);
+	}
 	@media (min-width: 1024px){
 		min-height: 50vh;
 	}
