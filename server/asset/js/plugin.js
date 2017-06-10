@@ -20,29 +20,11 @@
       $(activeBlock).addClass('active');
     }
 
-    function taskSlideToggle(e) {
-      if (!$(e.target).hasClass('icon-cancel')) {
-        var parentTask = $(this).closest('.task');
-        var taskContentWrap = $(parentTask).find('.task-content-wrap');
-
-        if ($(parentTask).hasClass('open')) {
-          $(taskContentWrap).slideUp(500, function () {
-            $(parentTask).removeClass('open');
-          });
-        } else {
-          $(taskContentWrap).slideDown(500, function () {
-            $(parentTask).addClass('open');
-          });
-        }
-      }
-    }
-
     function openEditBlock(e) {
       $([overlay, editTaskBlock]).toggleClass('open');
     }
 
     taskLink.on('click', tabTask);
-    taskHeader.on('click', taskSlideToggle);
     addTaskBtn.on('click', openEditBlock);
     overlay.on('click', openEditBlock);
     closeEdit.on('click', openEditBlock);

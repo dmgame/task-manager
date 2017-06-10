@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="taskApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Task-manager</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-ng-controller="baseCtrl">
 	<!-- HEADER START -->
 	
 	<div class="fixed-to-top">
@@ -42,17 +42,17 @@
 					<span class="month">фев</span>
 				</div>
 				<div class="all-task-wrap">
-					<!--ONE TASK-->
-					<div class="task-wrap">
-						<div class="task open warning">
-							<div class="to-do-time">9:00</div>
+					<!--ONE TASK START-->
+					<div class="task-wrap" data-ng-repeat="task in currentTasks">
+						<div class="task" data-ng-class="{'success' : task.status === 'done', 'warning' : (task.status === 'undone') && currentFullDate > (task.date + 'T' + task.time)}">
+							<div class="to-do-time">{{task.time}}</div>
 							<div class="task-all-content">
-								<div class="task-header">
+								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
 									</div>
 									<div class="short-task-text">
-										Дом: Отдать в химчистку куртку
+										{{task.taskText}}
 									</div>
 									<div class="remove">
 										<span class="icon icon-cancel"></span>
@@ -63,7 +63,7 @@
 										<div class="task-icon">
 											<span class="icon icon-time"></span>
 										</div>
-										<span class="time">9:00</span>
+										<span class="time">{{task.time}}</span>
 										<div class="alert">
 											<span class="icon icon-bell not-active"></span>
 										</div>
@@ -72,17 +72,35 @@
 										<div class="task-icon">
 											<span class="icon icon-list"></span>
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
-										mollitia labore assumenda.</p>
+										<p>{{task.taskText}}</p>
 									</div>
 									<div class="task-check-row">
-										<form>
+										<form data-ng-if="!((task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time)) || task.status === 'done')">
+											<div class="task-icon">
+												<span class="icon awaiting"><span class="circle"></span></span>
+											</div>
+											<label>
+												<input type="checkbox">
+												Задача еще не выполнена
+											</label>
+										</form>
+										<form data-ng-if="task.status === 'done'">
+											<div class="task-icon">
+												<span class="icon icon-check"></span>
+											</div>
+											<label>
+												<input type="checkbox">
+												Я выполнил задачу
+											</label>
+										</form>
+										<form data-ng-if="(task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))">
 											<div class="task-icon">
 												<span class="icon icon-warning"></span>
 											</div>
-											<input type="checkbox" name="todo-warning" id="todo-warning">
-											<label for="todo-warning">Вы не выполнили эту задачу</label>
+											<label>
+												<input type="checkbox">
+												Вы не выполнили эту задачу
+											</label>
 										</form>
 									</div>
 									<div class="task-edit-row">
@@ -91,120 +109,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="info-block warning">
+						<div class="info-block success" data-ng-if="task.status === 'done'">
+							<div class="info-icon">
+								<span class="icon icon-star"></span>
+							</div>
+							<span class="info-text">Поздравляем! Вы справились с задачей</span>
+						</div>
+						<div class="info-block warning" data-ng-if="(task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))">
 							<div class="info-icon">
 								<span class="icon icon-warning"></span>
 							</div>
 							<span class="info-text">Вы не выполнили эту задачу</span>
 						</div>
 					</div>
-					
-					<div class="task-wrap">
-						<div class="task open">
-							<div class="to-do-time">10:00</div>
-							<div class="task-all-content">
-								<div class="task-header">
-									<div class="slide-toggle-btn">
-										<span class="icon icon-arrow"></span>
-									</div>
-									<div class="short-task-text">
-										Работа: Закончить верстку сайта
-									</div>
-									<div class="remove">
-										<span class="icon icon-cancel"></span>
-									</div>
-								</div>
-								<div class="task-content-wrap">
-									<div class="time-row">
-										<div class="task-icon">
-											<span class="icon icon-time"></span>
-										</div>
-										<span class="time">10:00</span>
-										<div class="alert">
-											<span class="icon icon-bell blue-color"></span>
-										</div>
-									</div>
-									<div class="task-text-row">
-										<div class="task-icon">
-											<span class="icon icon-list"></span>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
-										mollitia labore assumenda.</p>
-									</div>
-									<div class="task-check-row">
-										<form>
-											<div class="task-icon">
-												<span class="icon awaiting"><span class="circle"></span></span>
-											</div>
-											<input type="checkbox" name="todo" id="todo">
-											<label for="todo">Задача еще не выполнена</label>
-										</form>
-									</div>
-									<div class="task-edit-row">
-										<span class="icon icon-edit not-active-color"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="task-wrap">
-						<div class="task open success">
-							<div class="to-do-time">13:30</div>
-							<div class="task-all-content">
-								<div class="task-header">
-									<div class="slide-toggle-btn">
-										<span class="icon icon-arrow"></span>
-									</div>
-									<div class="short-task-text">
-										Дом: Закупить продукты в супермаркете
-									</div>
-									<div class="remove">
-										<span class="icon icon-cancel"></span>
-									</div>
-								</div>
-								<div class="task-content-wrap">
-									<div class="time-row">
-										<div class="task-icon">
-											<span class="icon icon-time"></span>
-										</div>
-										<span class="time">13:30</span>
-										<div class="alert">
-											<span class="icon icon-bell not-active"></span>
-										</div>
-									</div>
-									<div class="task-text-row">
-										<div class="task-icon">
-											<span class="icon icon-list"></span>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
-										mollitia labore assumenda.</p>
-									</div>
-									<div class="task-check-row">
-										<form>
-											<div class="task-icon">
-												<span class="icon icon-check"></span>
-											</div>
-											<input type="checkbox" name="todo-success" id="todo-success">
-											<label for="todo-success">Я выполнил задачу</label>
-										</form>
-									</div>
-									<div class="task-edit-row">
-										<span class="icon icon-edit not-active"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="info-block success">
-							<div class="info-icon">
-								<span class="icon icon-star"></span>
-							</div>
-							<span class="info-text">Поздравляем! Вы справились с задачей</span>
-						</div>
-					</div>
-					
+					<!--ONE TASK END-->
 				</div>
 			</div>
 		</div>
@@ -216,17 +134,17 @@
 					<span class="month">фев</span>
 				</div>
 				<div class="all-task-wrap">
-					<!--ONE TASK-->
-					<div class="task-wrap">
-						<div class="task open">
-							<div class="to-do-time">10:00</div>
+					<!--ONE TASK START-->
+					<div class="task-wrap" data-ng-repeat="task in allTasks">
+						<div class="task" data-ng-class="{'success' : task.status === 'done', 'warning' : (task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))}">
+							<div class="to-do-time">{{task.time}}</div>
 							<div class="task-all-content">
-								<div class="task-header">
+								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
 									</div>
 									<div class="short-task-text">
-										Работа: Закончить верстку сайта
+										{{task.taskText}}
 									</div>
 									<div class="remove">
 										<span class="icon icon-cancel"></span>
@@ -237,57 +155,7 @@
 										<div class="task-icon">
 											<span class="icon icon-time"></span>
 										</div>
-										<span class="time">10:00</span>
-										<div class="alert">
-											<span class="icon icon-bell blue-color"></span>
-										</div>
-									</div>
-									<div class="task-text-row">
-										<div class="task-icon">
-											<span class="icon icon-list"></span>
-										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
-										mollitia labore assumenda.</p>
-									</div>
-									<div class="task-check-row">
-										<form>
-											<div class="task-icon">
-												<span class="icon awaiting"><span class="circle"></span></span>
-											</div>
-											<input type="checkbox" name="todo" id="todo">
-											<label for="todo">Задача еще не выполнена</label>
-										</form>
-									</div>
-									<div class="task-edit-row">
-										<span class="icon icon-edit not-active-color"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="task-wrap">
-						<div class="task open success">
-							<div class="to-do-time">13:30</div>
-							<div class="task-all-content">
-								<div class="task-header">
-									<div class="slide-toggle-btn">
-										<span class="icon icon-arrow"></span>
-									</div>
-									<div class="short-task-text">
-										Дом: Закупить продукты в супермаркете
-									</div>
-									<div class="remove">
-										<span class="icon icon-cancel"></span>
-									</div>
-								</div>
-								<div class="task-content-wrap">
-									<div class="time-row">
-										<div class="task-icon">
-											<span class="icon icon-time"></span>
-										</div>
-										<span class="time">13:30</span>
+										<span class="time">{{task.time}}</span>
 										<div class="alert">
 											<span class="icon icon-bell not-active"></span>
 										</div>
@@ -296,17 +164,35 @@
 										<div class="task-icon">
 											<span class="icon icon-list"></span>
 										</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-										Itaque iusto fugit, dolorum hic consectetur quasi est illo 
-										mollitia labore assumenda.</p>
+										<p>{{task.taskText}}</p>
 									</div>
 									<div class="task-check-row">
-										<form>
+										<form data-ng-if="!((task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time)) || task.status === 'done')">
+											<div class="task-icon">
+												<span class="icon awaiting"><span class="circle"></span></span>
+											</div>
+											<label>
+												<input type="checkbox">
+												Задача еще не выполнена
+											</label>
+										</form>
+										<form data-ng-if="task.status === 'done'">
 											<div class="task-icon">
 												<span class="icon icon-check"></span>
 											</div>
-											<input type="checkbox" name="todo-success" id="todo-success">
-											<label for="todo-success">Я выполнил задачу</label>
+											<label>
+												<input type="checkbox">
+												Я выполнил задачу
+											</label>
+										</form>
+										<form data-ng-if="(task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))">
+											<div class="task-icon">
+												<span class="icon icon-warning"></span>
+											</div>
+											<label>
+												<input type="checkbox">
+												Вы не выполнили эту задачу
+											</label>
 										</form>
 									</div>
 									<div class="task-edit-row">
@@ -315,14 +201,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="info-block success">
+						<div class="info-block success" data-ng-if="task.status === 'done'">
 							<div class="info-icon">
 								<span class="icon icon-star"></span>
 							</div>
 							<span class="info-text">Поздравляем! Вы справились с задачей</span>
 						</div>
+						<div class="info-block warning" data-ng-if="(task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))">
+							<div class="info-icon">
+								<span class="icon icon-warning"></span>
+							</div>
+							<span class="info-text">Вы не выполнили эту задачу</span>
+						</div>
 					</div>
-					
+					<!--ONE TASK END-->
 				</div>
 			</div>
 		</div>
@@ -368,7 +260,13 @@
 			src="https://code.jquery.com/jquery-3.2.1.min.js"
 			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			crossorigin="anonymous"></script>
-            
+    
+	<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="js/ctrl/baseCtrl.js"></script>
+	<script src="js/directive/taskAccordion.js"></script>
+	
 	<script src="js/plugin.js"></script>
 </body>
 </html>
