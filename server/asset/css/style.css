@@ -558,12 +558,13 @@ button {
             @media (min-width: 1024px) {
               .task-wrap .task .content-block .task-content-wrap .time-row .time {
                 padding-left: 15px; } }
-        .task-wrap .task .content-block .task-content-wrap .task-text-row p {
+        .task-wrap .task .content-block .task-content-wrap .task-text-row .text {
           width: 90%;
           padding-left: 10px;
-          line-height: 1.3; }
+          line-height: 1.3;
+          word-break: break-all; }
           @media (min-width: 1024px) {
-            .task-wrap .task .content-block .task-content-wrap .task-text-row p {
+            .task-wrap .task .content-block .task-content-wrap .task-text-row .text {
               padding-left: 15px; } }
         .task-wrap .task .content-block .task-content-wrap .task-check-row form {
           -webkit-box-align: center;

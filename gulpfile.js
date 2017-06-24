@@ -50,7 +50,7 @@ gulp.task('sprite', function () {
 });
 
 gulp.task('babel', function () {
-    return gulp.src('dist/js/*.js')
+    return gulp.src('dist/js/**/*.js')
         .pipe(babel({
             presets: ['es2015']
         }))
@@ -59,5 +59,5 @@ gulp.task('babel', function () {
 
 gulp.task('watch', ['sass', 'babel'], function(){
 	gulp.watch('dist/sass/**/*.scss', ['sass']);
-	gulp.watch('dist/js/*.js', ['babel']);
+	gulp.watch('dist/js/**/*.js', ['babel']);
 })
