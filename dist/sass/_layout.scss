@@ -1,6 +1,82 @@
 @import "custom-variables";
 @import "default-classes";
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+#loading{
+	background-color: #bd4932;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	z-index: 99999;
+	margin-top: 0px;
+	top: 0px;
+}
+
+#loading.ng-enter, #loading.ng-leave {
+	transition: opacity 0.3s linear, z-index 0.1s linear .4s;
+}
+
+#loading.ng-enter,
+#loading.ng-leave.ng-leave-active {
+	opacity:0;
+	z-index: -1;
+}
+
+#loading.ng-leave,
+#loading.ng-enter.ng-enter-active {
+	opacity:1;
+	z-index: 99999;
+}
+
+#loading-center{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#loading-center-absolute {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 200px;
+	width: 200px;
+	margin-top: -100px;
+	margin-left: -100px;
+}
+
+#object{
+	width: 80px;
+	height: 80px;
+	background-color: #FFF;
+	-webkit-animation: animate 1s infinite ease-in-out;
+	animation: animate 1s infinite ease-in-out;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 60px;
+}
+
+@-webkit-keyframes animate {
+  0% { -webkit-transform: perspective(160px); }
+  50% { -webkit-transform: perspective(160px) rotateY(-180deg); }
+  100% { -webkit-transform: perspective(160px) rotateY(-180deg) rotateX(-180deg); }
+}
+
+@keyframes animate {
+  0% { 
+    transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(160px) rotateX(0deg) rotateY(0deg); 
+  } 50% { 
+    transform: perspective(160px) rotateX(-180deg) rotateY(0deg);
+    -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(0deg) ;
+  } 100% { 
+    transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+    -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
 body {
 	color: $generalBodyColor;
 }
@@ -59,6 +135,55 @@ body {
 			margin-left: 35px;
 		}
 	}
+}
+
+#colors {
+	position: absolute;
+	top: 100px;
+	right: 124px;
+	width: 60px;
+	background-color: #fff;
+	border: 2px solid $generalColor;
+	border-top: 0;
+	box-shadow: 0px 0px 7.36px 0.64px rgba(0, 0, 0, .1);
+	opacity: 0;
+	z-index: -1;
+	transition: all .2s linear;
+	&.open {
+		z-index: 99;
+		opacity: 1;
+	}
+}
+
+li {
+	margin: 1em .5em;
+}
+
+.color {
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.theme-dark {
+	background-color: #009688;
+}
+
+.theme-light {
+	background-color: #5cd8b6;
+}
+
+.theme-brown {
+	background-color: #795548;
+}
+
+.theme-gray {
+	background-color: #607d8b;
+}
+
+.theme-default {
+	background-color: $generalColor;
 }
 
 //  MAIN START
@@ -129,13 +254,6 @@ body {
 		@media (min-width: 1024px) {
 			font-size: 3em;
 		}
-	}
-}
-
-.task-content {
-	display: none;
-	&.active {
-		display: block;
 	}
 }
 

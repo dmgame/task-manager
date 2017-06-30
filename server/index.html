@@ -9,35 +9,54 @@
 <body data-ng-controller="baseCtrl">
 	<!-- HEADER START -->
 	
-	<div class="fixed-to-top">
-		<div class="header">
+	<div class="fixed-to-top" data-ng-cloak>
+		<div class="header" data-ng-style="{'background-color': generalStyle['background-color']}">
 			<div class="container">
 				<div class="flex-container direction-row space-between">
-					<button class="add-task">
+					<button class="add-task" open-edit-modal>
 						<span class="icon icon-add"></span>
 					</button>
 					<nav class="user-nav">
-						<a href="#"><span class="icon icon-user"></span></a>
+						<a href="#colors" open-dropdown><span class="icon icon-user"></span></a>
 						<a href="#"><span class="icon icon-logout"></span></a>
 					</nav>
+					<div id="colors" data-ng-style="{'border-color': generalStyle['border-color']}">
+						<ul>
+							<li>
+								<div class="color theme-dark" change-theme></div>
+							</li>
+							<li>
+								<div class="color theme-light" change-theme></div>
+							</li>
+							<li>
+								<div class="color theme-brown" change-theme></div>
+							</li>
+							<li>
+								<div class="color theme-gray" change-theme></div>
+							</li>
+							<li>
+								<div class="color theme-default" change-theme></div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="toggle-task-type">
 			<div class="container">
 				<nav class="toggle-task-list">
-					<a href="#active-task" class="active">Активные задачи</a>
-					<a href="#all-task">Все задачи</a>
+					<a href="#active-task" data-ng-click="activeTab = 'activeTask'" data-ng-style="activeTab == 'activeTask' && {'color': generalStyle['color']}">Активные задачи</a>
+					<a href="#all-task"  data-ng-click="activeTab = 'allTask'" data-ng-style="activeTab == 'allTask' && {'color': generalStyle['color']}">Все задачи</a>
 				</nav>
 			</div>
 		</div>
 	</div>
 	<!-- HEADER END -->
 	<!-- MAIN START -->
-	<div class="main">
-		<div class="task-content active" id="active-task">
+	<div class="main" data-ng-cloak>
+		<div data-ng-if ="activeTab == 'activeTask'" class="task-content active" id="active-task">
 			<div class="container">
-				<div class="date-today">
+				<div class="date-today" data-ng-style="{'background-color': generalStyle['background-color']}">
 					<span class="date">09</span>
 					<span class="month">фев</span>
 				</div>
@@ -45,7 +64,7 @@
 					<!--ONE TASK START-->
 					<div class="task-wrap" data-ng-repeat="task in currentTasks">
 						<div class="task" data-ng-class="{'success' : task.status === 'done', 'warning' : (task.status === 'undone') && currentFullDate > (task.date + 'T' + task.time)}">
-							<div class="to-do-time">{{task.time}}</div>
+							<div class="to-do-time" data-ng-style="{'background-color': generalStyle['background-color']}">{{task.time}}</div>
 							<div class="task-all-content">
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
@@ -104,7 +123,7 @@
 										</form>
 									</div>
 									<div class="task-edit-row">
-										<span class="icon icon-edit not-active"></span>
+										<span class="icon icon-edit not-active" open-edit-modal data-ng-click="editTaskModal(task)"></span>
 									</div>
 								</div>
 							</div>
@@ -127,9 +146,9 @@
 			</div>
 		</div>
 		
-		<div class="task-content" id="all-task">
+		<div data-ng-if ="activeTab == 'allTask'" class="task-content" id="all-task">
 			<div class="container">
-				<div class="date-today">
+				<div class="date-today" data-ng-style="{'background-color': generalStyle['background-color']}">
 					<span class="date">09</span>
 					<span class="month">фев</span>
 				</div>
@@ -137,7 +156,7 @@
 					<!--ONE TASK START-->
 					<div class="task-wrap" data-ng-repeat="task in allTasks">
 						<div class="task" data-ng-class="{'success' : task.status === 'done', 'warning' : (task.status === 'undone') && (currentFullDate > (task.date + 'T' + task.time))}">
-							<div class="to-do-time">{{task.time}}</div>
+							<div class="to-do-time" data-ng-style="{'background-color': generalStyle['background-color']}">{{task.time}}</div>
 							<div class="task-all-content">
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
@@ -196,7 +215,7 @@
 										</form>
 									</div>
 									<div class="task-edit-row">
-										<span class="icon icon-edit not-active"></span>
+										<span class="icon icon-edit not-active" open-edit-modal data-ng-click="editTaskModal(task)"></span>
 									</div>
 								</div>
 							</div>
@@ -224,10 +243,10 @@
 	<!-- MAIN END -->
 
 	<!-- EDIT TASK START -->
-	<div class="overlay"></div>
+	<div class="overlay" open-edit-modal></div>
 	<div class="edit-task">
 		<div class="container">
-			<div class="close-edit">
+			<div class="close-edit" open-edit-modal>
 				<span class="icon icon-cancel"></span>
 			</div>
 			<div class="title">
@@ -235,14 +254,14 @@
 			</div>
 			<div class="input-group flex-container">
 				<div class="task-bell">
-					<span class="icon icon-bell"></span>
+					<span class="icon icon-bell" data-ng-style="{'color': generalStyle['color']}"></span>
 					<span>Оповестить за</span>
 				</div>
-				<input type="time" name="task-time" id="task-time">
-				<input type="date" name="task-date" id="task-date">
+				<input type="time" name="task-time" id="task-time" value="{{editTask.time}}">
+				<input type="date" name="task-date" id="task-date" value="{{editTask.date}}">
 			</div>
 			<div class="textarea-wrap">
-				<textarea name="task-text" id="task-text"></textarea>
+				<textarea name="task-text" id="task-text">{{editTask.taskText}}</textarea>
 				<label for="task-text">Ваша задача</label>
 				<div class="symbol-count">
 					<span class="count">0</span>
@@ -250,11 +269,21 @@
 				</div>
 			</div>
 			<div class="edit-task-btn-wrap">
-				<button type="button" class="btn edit-task-btn">Добавить</button>
+				<button type="button" class="btn edit-task-btn" data-ng-style="{'background-color': generalStyle['background-color']}">Добавить</button>
 			</div>
 		</div>
 	</div>
 	<!-- EDIT TASK END -->
+	
+	<!-- PRELOAD START -->
+	<div id="loading" data-ng-if="!hidePreload">
+		<div id="loading-center">
+			<div id="loading-center-absolute">
+				<div id="object"></div>
+			</div>
+		</div>
+	</div>
+	<!-- PRELOAD END -->
 	
 	<script
 			src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -264,8 +293,12 @@
 	<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
     
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 	<script src="js/ctrl/baseCtrl.js"></script>
 	<script src="js/directive/taskAccordion.js"></script>
+	<script src="js/directive/openEditModal.js"></script>
+	<script src="js/directive/openDropdown.js"></script>
+	<script src="js/directive/changeTheme.js"></script>
 	
 	<script src="js/plugin.js"></script>
 </body>
