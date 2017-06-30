@@ -9,25 +9,35 @@
 <body data-ng-controller="baseCtrl">
 	<!--Header start-->
 	<div class="fixed-to-top">
-		<div class="header">
+		<div class="header" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
 			<div class="conteiner">
 				<div class="flex-conteiner direction-row space-between">
-					<button class="add-task">
+					<button class="add-task" open-edit-modal>
 						<span></span>
 						<span></span>
 					</button>
 					<ul class="user-nav">
-						<li><a href="login.html"><span class="icon icon-user"></span></a></li>
+						<li><a href="#"><span class="icon icon-user" open-user-color></span></a></li>
 						<li><a href="#"><span class="icon icon-logout"></span></a></li>
 					</ul>
 				</div>	
 			</div>
 		</div>
+		<div class="user-block">
+			<div class="conteiner">
+				<div class="user-color-block" open-user-color>
+					<ul class="user-color-list">
+						<li class="user-color1" id="user-color-1" data-ng-click="activeColor = 'userColor1'; saveUserColor()"></li>
+						<li class="user-color2" id="user-color-2" data-ng-click="activeColor = 'userColor2'; saveUserColor()"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<div class="toggle-task-type">
 			<div class="conteiner">
 				<ul class="toggle-task-list">
-					<li><a href="#active-task" class="active">Активные задачи</a></li>
-					<li><a href="#all-task">Все задачи</a></li>
+					<li><a href="#active-task" data-ng-class="{'active': activeTab == 'activeTask',  'user-color1': activeColor == 'userColor1' && activeTab == 'activeTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'activeTask'}" data-ng-click="activeTab = 'activeTask'">Активные задачи</a></li>
+					<li><a href="#all-task" data-ng-class="{'active': activeTab == 'allTask', 'user-color1': activeColor == 'userColor1' && activeTab == 'allTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'allTask'}" data-ng-click="activeTab = 'allTask'">Все задачи</a></li>
 				</ul>
 			</div>
 		</div>
@@ -35,26 +45,26 @@
 		
 	<!--Header end-->
 	<!--Main start-->
-	<div class="main">		
-		<div class="task-content active" id="active-task" >
+	<div class="main" data-ng-cloak>		
+		<div data-ng-if="activeTab == 'activeTask'" class="task-content active" id="active-task" >
 			<div class="conteiner" data-ng-repeat="oneDate in undoneTask">
-				<div class="today-day">
+				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
 					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
-					<span class="month">{{ oneDate.date | date: 'MMMM' }}</span>
+					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
 				</div>
-				<div class="all-task-wrap">
+				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
 					<div class="task-wrap">
 						<!--ONE TASK Start-->
 						<div class="task open" data-ng-repeat="task in oneDate.task" 
 						data-ng-class="{'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
 							<div class="content-block">
-								<div class="to-do-time">{{task.time}}</div>
+								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">{{task.time}}</div>
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
 									</div>
 									<div class="short-task-text">
-										{{task.date}}
+										{{task.taskText}}
 									</div>
 									<div class="remove">
 										<span class="icon icon-cancel"></span>
@@ -100,7 +110,7 @@
 										</form>
 									</div>
 									<div class="task-edit-row">
-										<span class="icon icon-edit gray-color"></span>
+										<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)" ></span>
 									</div>
 								</div>
 							</div>
@@ -117,24 +127,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="task-content" id="all-task" >
+		<div data-ng-if="activeTab == 'allTask'" class="task-content" id="all-task" >
 			<div class="conteiner" data-ng-repeat="oneDate in allTask">
-				<div class="today-day">
+				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
 					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
-					<span class="month">{{ oneDate.date | date: 'MMMM' }}</span>
+					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
 				</div>
-				<div class="all-task-wrap">
+				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
 					<div class="task-wrap" >
 						<!--ONE TASK Start-->
 						<div class="task open" data-ng-repeat="task in oneDate.task" data-ng-class="{'success': task.status === 'done', 'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
 							<div class="content-block">
-								<div class="to-do-time">{{task.time}}</div>
+								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">{{task.time}}</div>
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
 									</div>
 									<div class="short-task-text">
-										{{task.date}}
+										{{task.taskText}}
 									</div>
 									<div class="remove">
 										<span class="icon icon-cancel"></span>
@@ -180,7 +190,7 @@
 										</form>
 									</div>
 									<div class="task-edit-row">
-										<span class="icon icon-edit gray-color"></span>
+										<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)"></span>
 									</div>
 								</div>
 							</div>
@@ -207,7 +217,7 @@
 	<!--Main end-->
 	
 	<!--Edit task start-->
-	<div class="overlay"></div>
+	<div class="overlay" open-edit-modal></div>
 	<div class="edit-task">
 		<div class="conteiner">
 			<div class="close-edit">
@@ -221,11 +231,11 @@
 						<span class="icon icon-bell"></span>
 						<span>Оповестить за</span>
 					</div>
-					<input type="time" name="task-time">
-					<input type="date" name="task-date">
+					<input type="time" name="task-time" id="task-time" value="{{editTask.time}}">
+					<input type="date" name="task-date" id="task-date" value="{{editTask.date}}">
 				</div>
 				<div class="textarea-wrap">
-					<textarea name="task-text" id="task-text" rows="4"></textarea>
+					<textarea name="task-text" id="task-text" rows="4">{{editTask.taskText}}</textarea>
 					<label for="task-text">Ваша задача</label>
 					<div class="symbol-count">
 						<span class="count">0</span>
@@ -240,6 +250,16 @@
 	</div>
 	<!--Edit task end-->
 	
+	<!--Preload start-->
+	<div id="loading" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}" data-ng-if="!hidePreload">
+		<div id="loading-center">
+			<div id="loading-center-absolute">
+				<div id="object"></div>
+			</div>
+		</div>
+	</div>
+	<!--Preload end-->
+
 	<!--jQuery-->
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
@@ -250,8 +270,11 @@
 	<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
 
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
   	<script src="js/ctrl/baseCtrl.js"></script>
   	<script src="js/directive/taskAccordion.js"></script>
+  	<script src="js/directive/openEditModal.js"></script>
+  	<script src="js/directive/openUserColor.js"></script>
 
   	<script src="js/plugin.js"></script>
 </body>

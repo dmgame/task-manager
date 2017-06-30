@@ -247,6 +247,79 @@ button {
 .gray-color {
   color: #bdbdbd; }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
+#loading {
+  background-color: #bd4932;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 99999;
+  margin-top: 0px;
+  top: 0px; }
+  #loading.user-color1 {
+    background: #bc2336; }
+  #loading.user-color2 {
+    background: #30436b; }
+
+#loading.ng-enter, #loading.ng-leave {
+  -webkit-transition: opacity 0.3s linear, z-index 0.1s linear 0.4s;
+  transition: opacity 0.3s linear, z-index 0.1s linear 0.4s; }
+
+#loading.ng-enter,
+#loading.ng-leave.ng-leave-active {
+  opacity: 0;
+  z-index: -1; }
+
+#loading.ng-leave,
+#loading.ng-enter.ng-enter-active {
+  opacity: 1;
+  z-index: 99999; }
+
+#loading-center {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+#loading-center-absolute {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 200px;
+  width: 200px;
+  margin-top: -100px;
+  margin-left: -100px; }
+
+#object {
+  width: 80px;
+  height: 80px;
+  background-color: #FFF;
+  -webkit-animation: animate 1s infinite ease-in-out;
+  animation: animate 1s infinite ease-in-out;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 60px; }
+
+@-webkit-keyframes animate {
+  0% {
+    -webkit-transform: perspective(160px); }
+  50% {
+    -webkit-transform: perspective(160px) rotateY(-180deg); }
+  100% {
+    -webkit-transform: perspective(160px) rotateY(-180deg) rotateX(-180deg); } }
+
+@keyframes animate {
+  0% {
+    transform: perspective(160px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(160px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    transform: perspective(160px) rotateX(-180deg) rotateY(0deg);
+    -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(0deg); }
+  100% {
+    transform: perspective(160px) rotateX(-180deg) rotateY(-180deg);
+    -webkit-transform: perspective(160px) rotateX(-180deg) rotateY(-180deg); } }
+
 .conteiner {
   max-width: 1230px;
   padding: 0 15px;
@@ -273,6 +346,31 @@ button {
   background: #00a2f4;
   padding: 3.5em 0;
   height: 100px; }
+  .header.user-color1 {
+    background: #bc2336; }
+  .header.user-color2 {
+    background: #30436b; }
+
+.user-color-block {
+  background: rgba(190, 190, 190, 0.1);
+  height: 100px;
+  width: 105px;
+  float: right;
+  opacity: 0;
+  z-index: -1; }
+  .user-color-block.open {
+    z-index: 99999;
+    opacity: 1; }
+  .user-color-block ul {
+    list-style: none; }
+    .user-color-block ul li {
+      width: 20px;
+      height: 20px;
+      margin: 20px; }
+      .user-color-block ul li.user-color1 {
+        background: #bc2336; }
+      .user-color-block ul li.user-color2 {
+        background: #30436b; }
 
 .add-task {
   font-size: 1em;
@@ -328,6 +426,10 @@ button {
         color: #bebebe; }
     .toggle-task-type .toggle-task-list li a.active {
       color: #00a2f4; }
+    .toggle-task-type .toggle-task-list li a.user-color1 {
+      color: #bc2336; }
+    .toggle-task-type .toggle-task-list li a.user-color2 {
+      color: #30436b; }
 
 .today-day {
   background: #00a2f4;
@@ -340,6 +442,10 @@ button {
   @media (min-width: 1024px) {
     .today-day {
       padding: 2em 10em; } }
+  .today-day.user-color1 {
+    background: #bc2336; }
+  .today-day.user-color2 {
+    background: #30436b; }
   .today-day .day {
     font-family: 'sf_ui_displaybold';
     font-size: 3.6em; }
@@ -358,11 +464,6 @@ button {
     .main {
       padding-top: 310px; } }
 
-.task-content {
-  display: none; }
-  .task-content.active {
-    display: block; }
-
 .all-task-wrap {
   padding: 4em 0;
   position: relative; }
@@ -378,6 +479,10 @@ button {
     @media (min-width: 1024px) {
       .all-task-wrap::before {
         left: 2.2em; } }
+  .all-task-wrap.user-color1::before {
+    border-left: 2px dashed #bc2336; }
+  .all-task-wrap.user-color2::before {
+    border-left: 2px dashed #30436b; }
   @media (min-width: 1024px) {
     .all-task-wrap {
       padding: 5em 0; } }
@@ -636,6 +741,10 @@ button {
       width: 3.57em;
       height: 3.57em;
       margin-top: 10px; } }
+  .to-do-time.user-color1 {
+    background: #bc2336; }
+  .to-do-time.user-color2 {
+    background: #30436b; }
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.83);

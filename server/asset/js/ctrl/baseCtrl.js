@@ -1,6 +1,6 @@
 'use strict';
 
-var taskApp = angular.module('taskApp', []);
+var taskApp = angular.module('taskApp', ['ngAnimate']);
 
 taskApp.run(function ($rootScope) {
 	$rootScope._ = window._;
@@ -13,6 +13,17 @@ taskApp.controller('baseCtrl', ['$scope', '$http', function ($scope, $http) {
 
 	$scope.nowDate = new Date();
 	$scope.nowFormatDate = $scope.nowDate.toISOString();
+
+	$scope.activeTab = 'activeTask';
+	$scope.editTask = {
+		date: '',
+		time: '',
+		taskText: '',
+		id: ''
+	};
+	$scope.hidePreload = false;
+
+	$scope.activeColor = '';
 
 	function checkToken() {
 		return new Promise(function (resolve, reject) {
@@ -56,8 +67,25 @@ taskApp.controller('baseCtrl', ['$scope', '$http', function ($scope, $http) {
 		console.log($scope.allTask);
 		console.log($scope.undoneTask);
 
+		$scope.hidePreload = true;
 		$scope.$digest();
 	}).catch(function (error) {
 		console.error('Токена нет');
 	});
+
+	$scope.editTaskModal = function (task) {
+		$scope.editTask.date = task.date;
+		$scope.editTask.time = task.time;
+		$scope.editTask.taskText = task.taskText;
+		$scope.editTask.id = task._id;
+		console.log($scope.editTask);
+	};
+	$scope.saveUserColor = function (activeColor) {
+		if ($scope.activeColor == 'userColor1') {
+			localStorage['userColor'] = 'userColor1';
+		} else if ($scope.activeColor == 'userColor2') {
+			localStorage['userColor'] = 'userColor2';
+		}
+		console.log(localStorage.userColor);
+	};
 }]);
