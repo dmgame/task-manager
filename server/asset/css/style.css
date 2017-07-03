@@ -353,8 +353,8 @@ button {
 
 .user-color-block {
   background: rgba(190, 190, 190, 0.1);
-  height: 100px;
-  width: 105px;
+  height: 160px;
+  width: 120px;
   float: right;
   opacity: 0;
   z-index: -1; }
@@ -366,7 +366,9 @@ button {
     .user-color-block ul li {
       width: 20px;
       height: 20px;
-      margin: 20px; }
+      margin: 20px;
+      cursor: pointer;
+      font-size: 14px; }
       .user-color-block ul li.user-color1 {
         background: #bc2336; }
       .user-color-block ul li.user-color2 {

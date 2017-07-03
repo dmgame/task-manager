@@ -9,7 +9,7 @@
 <body data-ng-controller="baseCtrl">
 	<!--Header start-->
 	<div class="fixed-to-top">
-		<div class="header" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
+		<div class="header" data-ng-class="{'user-color1': (activeColor == 'userColor1'), 'user-color2': (activeColor == 'userColor2'), 'general-color': activeColor == 'generalColor'}">
 			<div class="conteiner">
 				<div class="flex-conteiner direction-row space-between">
 					<button class="add-task" open-edit-modal>
@@ -29,6 +29,7 @@
 					<ul class="user-color-list">
 						<li class="user-color1" id="user-color-1" data-ng-click="activeColor = 'userColor1'; saveUserColor()"></li>
 						<li class="user-color2" id="user-color-2" data-ng-click="activeColor = 'userColor2'; saveUserColor()"></li>
+						<li class='general-color' data-ng-click="activeColor = 'generalColor'; saveUserColor()"><a href="#">Цвет по умолчанию</a></li>
 					</ul>
 				</div>
 			</div>
@@ -36,8 +37,8 @@
 		<div class="toggle-task-type">
 			<div class="conteiner">
 				<ul class="toggle-task-list">
-					<li><a href="#active-task" data-ng-class="{'active': activeTab == 'activeTask',  'user-color1': activeColor == 'userColor1' && activeTab == 'activeTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'activeTask'}" data-ng-click="activeTab = 'activeTask'">Активные задачи</a></li>
-					<li><a href="#all-task" data-ng-class="{'active': activeTab == 'allTask', 'user-color1': activeColor == 'userColor1' && activeTab == 'allTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'allTask'}" data-ng-click="activeTab = 'allTask'">Все задачи</a></li>
+					<li><a href="#active-task" data-ng-class="{'active': activeTab == 'activeTask',  'user-color1': activeColor == 'userColor1' && activeTab == 'activeTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'activeTask', 'general-color': activeColor == 'generalColor'}" data-ng-click="activeTab = 'activeTask'">Активные задачи</a></li>
+					<li><a href="#all-task" data-ng-class="{'active': activeTab == 'allTask', 'user-color1': activeColor == 'userColor1' && activeTab == 'allTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'allTask', 'general-color': activeColor == 'generalColor'}" data-ng-click="activeTab = 'allTask'">Все задачи</a></li>
 				</ul>
 			</div>
 		</div>
@@ -48,17 +49,17 @@
 	<div class="main" data-ng-cloak>		
 		<div data-ng-if="activeTab == 'activeTask'" class="task-content active" id="active-task" >
 			<div class="conteiner" data-ng-repeat="oneDate in undoneTask">
-				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
+				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
 					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
 					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
 				</div>
-				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
+				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
 					<div class="task-wrap">
 						<!--ONE TASK Start-->
 						<div class="task open" data-ng-repeat="task in oneDate.task" 
 						data-ng-class="{'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
 							<div class="content-block">
-								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">{{task.time}}</div>
+								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">{{task.time}}</div>
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
@@ -129,16 +130,16 @@
 		</div>
 		<div data-ng-if="activeTab == 'allTask'" class="task-content" id="all-task" >
 			<div class="conteiner" data-ng-repeat="oneDate in allTask">
-				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
+				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
 					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
 					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
 				</div>
-				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">
+				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
 					<div class="task-wrap" >
 						<!--ONE TASK Start-->
 						<div class="task open" data-ng-repeat="task in oneDate.task" data-ng-class="{'success': task.status === 'done', 'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
 							<div class="content-block">
-								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}">{{task.time}}</div>
+								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">{{task.time}}</div>
 								<div class="task-header" task-accordion>
 									<div class="slide-toggle-btn">
 										<span class="icon icon-arrow"></span>
@@ -251,7 +252,7 @@
 	<!--Edit task end-->
 	
 	<!--Preload start-->
-	<div id="loading" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2'}" data-ng-if="!hidePreload">
+	<div id="loading" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}" data-ng-if="!hidePreload">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
 				<div id="object"></div>

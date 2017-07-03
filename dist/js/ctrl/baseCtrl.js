@@ -4,7 +4,7 @@ taskApp.run(function ($rootScope) {
 	$rootScope._ = window._;
 });
 
-taskApp.controller('baseCtrl', ['$scope','$http', function ($scope, $http) {
+taskApp.controller('baseCtrl', ['$scope','$http', '$window', function ($scope, $http, $window) {
 	$scope.allTask = [];
 	$scope.undoneTask = [];
 	$scope.sortDate = {};
@@ -22,7 +22,7 @@ taskApp.controller('baseCtrl', ['$scope','$http', function ($scope, $http) {
 	$scope.hidePreload = false;
 	
 	$scope.activeColor = '';
-
+	
 	function checkToken() {
 		return new Promise(function (resolve, reject) {
 			if(localStorage.id || sessionStorage.id){
@@ -84,13 +84,23 @@ taskApp.controller('baseCtrl', ['$scope','$http', function ($scope, $http) {
 		$scope.editTask.id = task._id;
 		console.log($scope.editTask);
 	}
-	$scope.saveUserColor = function (activeColor) {
+	$scope.saveUserColor = function () {
+
 		if ($scope.activeColor == 'userColor1'){
 			localStorage['userColor'] = 'userColor1';
 		} else if ($scope.activeColor == 'userColor2'){
 			localStorage['userColor'] = 'userColor2';
+		} else {
+			localStorage.removeItem('userColor');
 		}
-		console.log(localStorage.userColor);
+		
 	}
+	
+	let changeUserColor = $window.localStorage.getItem('userColor');
+	
+	if (changeUserColor) {
+		$scope.activeColor = changeUserColor;
+	}
+
 
 }]);
