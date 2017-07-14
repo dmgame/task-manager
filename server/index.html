@@ -9,36 +9,37 @@
 <body data-ng-controller="baseCtrl">
 	<!--Header start-->
 	<div class="fixed-to-top">
-		<div class="header" data-ng-class="{'user-color1': (activeColor == 'userColor1'), 'user-color2': (activeColor == 'userColor2'), 'general-color': activeColor == 'generalColor'}">
-			<div class="conteiner">
-				<div class="flex-conteiner direction-row space-between">
-					<button class="add-task" open-edit-modal>
-						<span></span>
-						<span></span>
-					</button>
-					<ul class="user-nav">
-						<li><a href="#"><span class="icon icon-user" open-user-color></span></a></li>
-						<li><a href="#"><span class="icon icon-logout"></span></a></li>
-					</ul>
-				</div>	
-			</div>
-		</div>
-		<div class="user-block">
-			<div class="conteiner">
-				<div class="user-color-block" open-user-color>
-					<ul class="user-color-list">
-						<li class="user-color1" id="user-color-1" data-ng-click="activeColor = 'userColor1'; saveUserColor()"></li>
-						<li class="user-color2" id="user-color-2" data-ng-click="activeColor = 'userColor2'; saveUserColor()"></li>
-						<li class='general-color' data-ng-click="activeColor = 'generalColor'; saveUserColor()"><a href="#">Цвет по умолчанию</a></li>
-					</ul>
-				</div>
+		<div class="header" set-bg-color>
+			<div class="conteiner flex-conteiner direction-row space-between">
+				<button class="add-task" open-edit-modal>
+					<span></span>
+					<span></span>
+				</button>
+				<ul class="user-nav">
+					<li>
+						<a href="#">
+							<span class="icon icon-user">
+								<div class="dropdown change-color">
+									<ul>
+										<li change-app-color="{{item}}" data-ng-class="{ 'active': item === baseAppBgColor }" data-ng-click="changeColor(item)" data-ng-repeat="item in colorPalitra" ></li>
+									</ul>
+								</div>
+							</span>
+						</a>
+					</li>
+					<li>	
+						<a href="#" data-ng-click="logout()">
+							<span class="icon icon-logout"></span>
+						</a>
+					</li>
+				</ul>	
 			</div>
 		</div>
 		<div class="toggle-task-type">
 			<div class="conteiner">
 				<ul class="toggle-task-list">
-					<li><a href="#active-task" data-ng-class="{'active': activeTab == 'activeTask',  'user-color1': activeColor == 'userColor1' && activeTab == 'activeTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'activeTask', 'general-color': activeColor == 'generalColor'}" data-ng-click="activeTab = 'activeTask'">Активные задачи</a></li>
-					<li><a href="#all-task" data-ng-class="{'active': activeTab == 'allTask', 'user-color1': activeColor == 'userColor1' && activeTab == 'allTask', 'user-color2': activeColor == 'userColor2' && activeTab == 'allTask', 'general-color': activeColor == 'generalColor'}" data-ng-click="activeTab = 'allTask'">Все задачи</a></li>
+					<li><a href="#active-task" data-ng-class="{'active': activeTab == 'activeTask'}" data-ng-click="activeTab = 'activeTask'">Активные задачи</a></li>
+					<li><a href="#all-task" data-ng-class="{'active': activeTab == 'allTask'}" data-ng-click="activeTab = 'allTask'">Все задачи</a></li>
 				</ul>
 			</div>
 		</div>
@@ -48,170 +49,176 @@
 	<!--Main start-->
 	<div class="main" data-ng-cloak>		
 		<div data-ng-if="activeTab == 'activeTask'" class="task-content active" id="active-task" >
-			<div class="conteiner" data-ng-repeat="oneDate in undoneTask">
-				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
-					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
-					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
-				</div>
-				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
-					<div class="task-wrap">
-						<!--ONE TASK Start-->
-						<div class="task open" data-ng-repeat="task in oneDate.task" 
-						data-ng-class="{'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
-							<div class="content-block">
-								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">{{task.time}}</div>
-								<div class="task-header" task-accordion>
-									<div class="slide-toggle-btn">
-										<span class="icon icon-arrow"></span>
+			<div class="conteiner">
+				<div data-ng-repeat="tasks in undoneTaskSort"> 
+					<div class="today-day" set-bg-color>
+						<span class="day">{{ tasks | filterByDay }}</span>
+						<span class="month">{{ tasks | filterByMonth }}</span>
+					</div>
+					<div class="all-task-wrap">
+						<div class="task-wrap">
+							<!--ONE TASK Start-->
+							<div class="task open" data-ng-repeat="task in tasks" 
+							data-ng-class="{'warning': (task.status == 'undone') && (task.newDate < curentDate)}">
+								<div class="content-block">
+									<div class="to-do-time" set-bg-color>{{task.time}}</div>
+									<div class="task-header" task-accordion>
+										<div class="slide-toggle-btn">
+											<span class="icon icon-arrow"></span>
+										</div>
+										<div class="short-task-text">
+											{{task.taskText}}
+										</div>
+										<div class="remove">
+											<span class="icon icon-cancel"></span>
+										</div>
 									</div>
-									<div class="short-task-text">
-										{{task.taskText}}
-									</div>
-									<div class="remove">
-										<span class="icon icon-cancel"></span>
+									<div class="task-content-wrap">
+										<div class="time-row">
+											<div class="task-icon">
+												<span class="icon icon-time"></span>
+											</div>
+											<span class="time">{{task.time}}</span>
+											<div class="alert">
+												<span class="icon icon-bell blue-color"></span>
+											</div>
+										</div>
+										<div class="task-text-row">
+											<div class="task-icon">
+												<span class="icon icon-list"></span>
+											</div>
+											<div class="text">{{task.taskText}}</div>
+										</div>
+										<div class="task-check-row">
+											<form data-ng-if="!((task.status === 'undone') && (curentDate > task.newDate || task.status === 'done'))">
+												<div class="task-icon">
+													<span class="icon icon-check-red"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Задача еще не выполнена</label>
+											</form>
+											<form data-ng-if="task.status === 'done'">
+												<div class="task-icon">
+													<span class="icon icon-check"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Я выполнил задачу</label>
+											</form>
+											<form data-ng-if="(task.status === 'undone') && (curentDate > task.newDate)">
+												<div class="task-icon">
+													<span class="icon icon-warning"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Вы не выполнили эту задачу</label>
+											</form>
+										</div>
+										<div class="task-edit-row">
+											<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)" ></span>
+										</div>
 									</div>
 								</div>
-								<div class="task-content-wrap">
-									<div class="time-row">
-										<div class="task-icon">
-											<span class="icon icon-time"></span>
-										</div>
-										<span class="time">{{task.time}}</span>
-										<div class="alert">
-											<span class="icon icon-bell blue-color"></span>
-										</div>
+								<div class="info-block warning" data-ng-if="(task.status === 'undone') && (curentDate > task.newDate)">
+									<div class="info-icon">
+										<span class="icon icon-warning"></span>
 									</div>
-									<div class="task-text-row">
-										<div class="task-icon">
-											<span class="icon icon-list"></span>
-										</div>
-										<div class="text">{{task.taskText}}</div>
-									</div>
-									<div class="task-check-row">
-										<form data-ng-if="!((task.status === 'undone') && (nowFormatDate > (task.date + 'T' + task.time)) || task.status === 'done')">
-											<div class="task-icon">
-												<span class="icon icon-check-red"></span>
-											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Задача еще не выполнена</label>
-										</form>
-										<form data-ng-if="task.status == 'done'">
-											<div class="task-icon">
-												<span class="icon icon-check"></span>
-											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Я выполнил задачу</label>
-										</form>
-										<form data-ng-if="(task.status === 'undone') && (nowFormatDate > (task.date + 'T' + task.time))">
-											<div class="task-icon">
-												<span class="icon icon-warning"></span>
-											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Вы не выполнили эту задачу</label>
-										</form>
-									</div>
-									<div class="task-edit-row">
-										<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)" ></span>
-									</div>
+									<span>Вы не выполнили эту задачу</span>
 								</div>
 							</div>
-							<div class="info-block warning" data-ng-if="(task.status === 'undone') && (nowFormatData > (task.date + 'T' + task.time))">
-								<div class="info-icon">
-									<span class="icon icon-warning"></span>
-								</div>
-								<span>Вы не выполнили эту задачу</span>
-							</div>
-						</div>
-						<!--ONE TASK Finish-->
+							<!--ONE TASK Finish-->
 
+						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		<div data-ng-if="activeTab == 'allTask'" class="task-content" id="all-task" >
-			<div class="conteiner" data-ng-repeat="oneDate in allTask">
-				<div class="today-day" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
-					<span class="day">{{ oneDate.date | date: 'dd' }}</span>
-					<span class="month">{{ oneDate.date | date: 'MMM' }}</span>
-				</div>
-				<div class="all-task-wrap" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">
-					<div class="task-wrap" >
-						<!--ONE TASK Start-->
-						<div class="task open" data-ng-repeat="task in oneDate.task" data-ng-class="{'success': task.status === 'done', 'warning': (task.status == 'undone') && (nowDate | date: 'yyyy-MM-dd HH:mm') > (task.date + ' ' + task.time)}">
-							<div class="content-block">
-								<div class="to-do-time" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}">{{task.time}}</div>
-								<div class="task-header" task-accordion>
-									<div class="slide-toggle-btn">
-										<span class="icon icon-arrow"></span>
-									</div>
-									<div class="short-task-text">
-										{{task.taskText}}
-									</div>
-									<div class="remove">
-										<span class="icon icon-cancel"></span>
-									</div>
-								</div>
-								<div class="task-content-wrap">
-									<div class="time-row">
-										<div class="task-icon">
-											<span class="icon icon-time"></span>
+			<div class="conteiner">
+				<div data-ng-repeat="tasks in allTaskSort">
+					<div class="today-day" set-bg-color>
+						<span class="day">{{ tasks | filterByDay }}</span>
+						<span class="month">{{ tasks | filterByMonth }}</span>
+					</div>
+					<div class="all-task-wrap">
+						<div class="task-wrap" >
+							<!--ONE TASK Start-->
+							<div class="task open" data-ng-repeat="task in tasks" data-ng-class="{'success': task.status === 'done', 'warning': (task.status == 'undone') && curentDate > task.newDate}">
+								<div class="content-block">
+									<div class="to-do-time" set-bg-color>{{task.time}}</div>
+									<div class="task-header" task-accordion>
+										<div class="slide-toggle-btn">
+											<span class="icon icon-arrow"></span>
 										</div>
-										<span class="time">{{task.time}}</span>
-										<div class="alert">
-											<span class="icon icon-bell blue-color"></span>
+										<div class="short-task-text">
+											{{task.taskText}}
+										</div>
+										<div class="remove">
+											<span class="icon icon-cancel"></span>
 										</div>
 									</div>
-									<div class="task-text-row">
-										<div class="task-icon">
-											<span class="icon icon-list"></span>
+									<div class="task-content-wrap">
+										<div class="time-row">
+											<div class="task-icon">
+												<span class="icon icon-time"></span>
+											</div>
+											<span class="time">{{task.time}}</span>
+											<div class="alert">
+												<span class="icon icon-bell blue-color"></span>
+											</div>
 										</div>
-										<div class="text">{{task.taskText}}</div>
-									</div>
-									<div class="task-check-row">
-										<form data-ng-if="!((task.status == 'undone') && (nowFormatDate > task.date + 'T' + task.time) || task.status == 'done')">
+										<div class="task-text-row">
 											<div class="task-icon">
-												<span class="icon icon-check-red"></span>
+												<span class="icon icon-list"></span>
 											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Задача еще не выполнена</label>
-										</form>
-										<form data-ng-if="task.status === 'done'">
-											<div class="task-icon">
-												<span class="icon icon-check"></span>
-											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Я выполнил задачу</label>
-										</form>
-										<form data-ng-if="(task.status == 'undone') && (nowFormatDate > (task.date + ' ' + task.time))">
-											<div class="task-icon">
-												<span class="icon icon-warning"></span>
-											</div>
-											<input type="checkbox" name="todo" id="todotask-1">
-											<label for="todotask-1">Вы не выполнили эту задачу</label>
-										</form>
-									</div>
-									<div class="task-edit-row">
-										<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)"></span>
+											<div class="text">{{task.taskText}}</div>
+										</div>
+										<div class="task-check-row">
+											<form data-ng-if="!((task.status == 'undone') && curentDate > task.newDate || task.status == 'done')">
+												<div class="task-icon">
+													<span class="icon icon-check-red"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Задача еще не выполнена</label>
+											</form>
+											<form data-ng-if="task.status === 'done'">
+												<div class="task-icon">
+													<span class="icon icon-check"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Я выполнил задачу</label>
+											</form>
+											<form data-ng-if="(task.status == 'undone') && (curentDate > task.newDate)">
+												<div class="task-icon">
+													<span class="icon icon-warning"></span>
+												</div>
+												<input type="checkbox" name="todo" id="todotask-1">
+												<label for="todotask-1">Вы не выполнили эту задачу</label>
+											</form>
+										</div>
+										<div class="task-edit-row">
+											<span class="icon icon-edit gray-color" open-edit-modal data-ng-click="editTaskModal(task)"></span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="info-block success" data-ng-if="task.status == 'done'">
-								<div class="info-icon">
-									<span class="icon icon-warning"></span>
+								<div class="info-block success" data-ng-if="task.status == 'done'">
+									<div class="info-icon">
+										<span class="icon icon-warning"></span>
+									</div>
+									<span>Поздравляем! Вы справились с задачей</span>
 								</div>
-								<span>Поздравляем! Вы справились с задачей</span>
-							</div>
-							<div class="info-block warning" data-ng-if="(task.status === 'undone') && (nowFormatDate > (task.date + 'T' + task.time))">
-								<div class="info-icon">
-									<span class="icon icon-warning"></span>
+								<div class="info-block warning" data-ng-if="(task.status === 'undone') && (curentDate > task.newDate)">
+									<div class="info-icon">
+										<span class="icon icon-warning"></span>
+									</div>
+									<span>Вы не выполнили эту задачу</span>
 								</div>
-								<span>Вы не выполнили эту задачу</span>
 							</div>
-						</div>
-						<!--ONE TASK Finish-->
+							<!--ONE TASK Finish-->
 
+						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -252,7 +259,7 @@
 	<!--Edit task end-->
 	
 	<!--Preload start-->
-	<div id="loading" data-ng-class="{'user-color1': activeColor == 'userColor1', 'user-color2': activeColor == 'userColor2', 'general-color': activeColor == 'generalColor'}" data-ng-if="!hidePreload">
+	<div id="loading" data-ng-if="!hidePreload">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
 				<div id="object"></div>
@@ -275,7 +282,10 @@
   	<script src="js/ctrl/baseCtrl.js"></script>
   	<script src="js/directive/taskAccordion.js"></script>
   	<script src="js/directive/openEditModal.js"></script>
-  	<script src="js/directive/openUserColor.js"></script>
+  	<script src="js/directive/changeAppColor.js"></script>
+  	<script src="js/directive/setBgColor.js"></script>
+	<script src="js/filters/filterByDay.js"></script>
+	<script src="js/filters/filterByMonth.js"></script>
 
   	<script src="js/plugin.js"></script>
 </body>

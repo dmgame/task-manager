@@ -7,10 +7,10 @@ taskApp.run(function ($rootScope) {
 taskApp.controller('baseCtrl', ['$scope','$http', '$window', function ($scope, $http, $window) {
 	$scope.allTask = [];
 	$scope.undoneTask = [];
-	$scope.sortDate = {};
+	$scope.allTaskSort = {};
+	$scope.undoneTaskSort = {};
 
-	$scope.nowDate = new Date();
-	$scope.nowFormatDate = $scope.nowDate.toISOString();
+	$scope.curentDate = +new Date();
 	
 	$scope.activeTab = 'activeTask';
 	$scope.editTask = {
@@ -22,7 +22,24 @@ taskApp.controller('baseCtrl', ['$scope','$http', '$window', function ($scope, $
 	$scope.hidePreload = false;
 	
 	$scope.activeColor = '';
+	$scope.colorPalitra = ['#ff5201', '#ffbb00', '#7cbb00', '#00a2f4'];
+	$scope.baseAppBgColor = localStorage.appBgColor || '#00a2f4';
 	
+	function createObjSortTask(arr) {
+		var obj = {};
+		for (var i = 0, len = arr.length; i < len; i++) {
+			arr[i].newDate = Date.parse(arr[i].date);
+
+			if(obj[arr[i].date]){
+				obj[arr[i].date].push(arr[i]);
+			} else {
+				obj[arr[i].date] = [];
+				obj[arr[i].date].push(arr[i]);
+			}	
+		}
+		return obj;
+	}
+
 	function checkToken() {
 		return new Promise(function (resolve, reject) {
 			if(localStorage.id || sessionStorage.id){
@@ -37,37 +54,17 @@ taskApp.controller('baseCtrl', ['$scope','$http', '$window', function ($scope, $
 	checkToken()
 		.then(function (res){
 			
-			for (var i = 0; i < res.data.length; i++) {
-				var key = res.data[i].date;
-				if($scope.sortDate[key]){
-					$scope.sortDate[key].push(res.data[i]);
-				} else {
-					$scope.sortDate[key] = [];
-					$scope.sortDate[key].push(res.data[i]);
-				}	
-			}
-			
-			
-			$scope.sortPropName = [];
-			for (var key in $scope.sortDate){
-				$scope.sortPropName.push({date: key, task: $scope.sortDate[key]});	
-			}
-			
-			$scope.allTask = _.sortBy($scope.sortPropName, ['date']);
+			$scope.allTask = _.sortBy(res.data, ['date']);
 
-			$scope.undoneTask = _.filter($scope.allTask, function (obj) {
-				var oneTask = obj.task;
-				for (var i = 0; i < oneTask.length; i++) {
-					let taskDate = oneTask[i].date + 'T' + oneTask[i].time;
-					return taskDate >= $scope.nowFormatDate;	
-				}
+			$scope.undoneTask = _.filter($scope.allTask, function (task) {
+				return task.status === 'undone';	
 			});
 			
-			
+			$scope.allTaskSort = createObjSortTask($scope.allTask);
+			$scope.undoneTaskSort = createObjSortTask($scope.undoneTask);
 
-			console.log($scope.sortDate);
-			console.log($scope.allTask);
-			console.log($scope.undoneTask);
+			console.log($scope.allTaskSort);
+			console.log($scope.undoneTaskSort);
 			
 			$scope.hidePreload = true;
 			$scope.$digest();
@@ -84,23 +81,16 @@ taskApp.controller('baseCtrl', ['$scope','$http', '$window', function ($scope, $
 		$scope.editTask.id = task._id;
 		console.log($scope.editTask);
 	}
-	$scope.saveUserColor = function () {
-
-		if ($scope.activeColor == 'userColor1'){
-			localStorage['userColor'] = 'userColor1';
-		} else if ($scope.activeColor == 'userColor2'){
-			localStorage['userColor'] = 'userColor2';
-		} else {
-			localStorage.removeItem('userColor');
-		}
-		
-	}
 	
-	let changeUserColor = $window.localStorage.getItem('userColor');
-	
-	if (changeUserColor) {
-		$scope.activeColor = changeUserColor;
+	$scope.changeColor = function (color) {
+		$scope.baseAppBgColor = color;
+		localStorage.appBgColor = color;
+		console.log($scope.baseAppBgColor);
 	}
 
-
+	$scope.logout = function(){
+		localStorage.removeItem('id');
+		localStorage.removeItem('appBgColor');
+		window.location = '/login';
+	}
 }]);

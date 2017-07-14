@@ -258,10 +258,6 @@ button {
   z-index: 99999;
   margin-top: 0px;
   top: 0px; }
-  #loading.user-color1 {
-    background: #bc2336; }
-  #loading.user-color2 {
-    background: #30436b; }
 
 #loading.ng-enter, #loading.ng-leave {
   -webkit-transition: opacity 0.3s linear, z-index 0.1s linear 0.4s;
@@ -345,34 +341,8 @@ button {
 .header {
   background: #00a2f4;
   padding: 3.5em 0;
-  height: 100px; }
-  .header.user-color1 {
-    background: #bc2336; }
-  .header.user-color2 {
-    background: #30436b; }
-
-.user-color-block {
-  background: rgba(190, 190, 190, 0.1);
-  height: 160px;
-  width: 120px;
-  float: right;
-  opacity: 0;
-  z-index: -1; }
-  .user-color-block.open {
-    z-index: 99999;
-    opacity: 1; }
-  .user-color-block ul {
-    list-style: none; }
-    .user-color-block ul li {
-      width: 20px;
-      height: 20px;
-      margin: 20px;
-      cursor: pointer;
-      font-size: 14px; }
-      .user-color-block ul li.user-color1 {
-        background: #bc2336; }
-      .user-color-block ul li.user-color2 {
-        background: #30436b; }
+  height: 100px;
+  position: relative; }
 
 .add-task {
   font-size: 1em;
@@ -383,7 +353,9 @@ button {
           border-radius: 50%;
   -webkit-transform: translateY(55%);
       -ms-transform: translateY(55%);
-          transform: translateY(55%); }
+          transform: translateY(55%);
+  -webkit-box-shadow: 0px 5px 16.17px 4.83px rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 5px 16.17px 4.83px rgba(0, 0, 0, 0.08); }
   .add-task span {
     display: inline-block;
     width: 3em;
@@ -404,8 +376,42 @@ button {
 .user-nav {
   font-size: 3em;
   color: #fff; }
+  .user-nav li a {
+    position: relative;
+    display: inline-block; }
+  .user-nav li:hover .dropdown {
+    display: block; }
   .user-nav li + li {
     margin-left: 40px; }
+  .user-nav .dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;
+    padding: 10px 15px;
+    background-color: #fff;
+    z-index: 999;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); }
+    .user-nav .dropdown ul li {
+      width: 50px;
+      height: 20px;
+      -webkit-transition: all .2s linear;
+      transition: all .2s linear; }
+      .user-nav .dropdown ul li + li {
+        margin-top: 10px;
+        margin-left: 0; }
+      .user-nav .dropdown ul li:hover {
+        -webkit-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+                transform: scale(1.1); }
+      .user-nav .dropdown ul li.active {
+        -webkit-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+                transform: scale(1.1); }
 
 .toggle-task-type {
   padding: 5em 0; }
@@ -428,10 +434,6 @@ button {
         color: #bebebe; }
     .toggle-task-type .toggle-task-list li a.active {
       color: #00a2f4; }
-    .toggle-task-type .toggle-task-list li a.user-color1 {
-      color: #bc2336; }
-    .toggle-task-type .toggle-task-list li a.user-color2 {
-      color: #30436b; }
 
 .today-day {
   background: #00a2f4;
@@ -444,10 +446,6 @@ button {
   @media (min-width: 1024px) {
     .today-day {
       padding: 2em 10em; } }
-  .today-day.user-color1 {
-    background: #bc2336; }
-  .today-day.user-color2 {
-    background: #30436b; }
   .today-day .day {
     font-family: 'sf_ui_displaybold';
     font-size: 3.6em; }
@@ -481,10 +479,6 @@ button {
     @media (min-width: 1024px) {
       .all-task-wrap::before {
         left: 2.2em; } }
-  .all-task-wrap.user-color1::before {
-    border-left: 2px dashed #bc2336; }
-  .all-task-wrap.user-color2::before {
-    border-left: 2px dashed #30436b; }
   @media (min-width: 1024px) {
     .all-task-wrap {
       padding: 5em 0; } }
@@ -743,10 +737,6 @@ button {
       width: 3.57em;
       height: 3.57em;
       margin-top: 10px; } }
-  .to-do-time.user-color1 {
-    background: #bc2336; }
-  .to-do-time.user-color2 {
-    background: #30436b; }
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.83);
