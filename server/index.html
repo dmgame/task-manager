@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Document</title>
+</head>
+<body>
+
+	<div class="sticky-header">
+		<header class="header">
+			<div class="container flex-container">
+				<button class="add-task">
+					<span></span>
+					<span></span>
+				</button>
+				<nav class="user-nav">
+					<a href="#"><i class="icon icon-user"></i></a>
+					<a href="#"><i class="icon icon-logout"></i></a>
+				</nav>
+			</div>
+		</header>
+		<div class="toggle-class-type">
+			<div class="container">
+				<div class="toggle-task-list">
+					<a href="#" class='active'>Активные задачи</a>
+					<a href="#">Все задачи</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<main>
+		<div class="task-content" id="active-task">
+			<div class="container">
+				<div class="task-day">
+					<span class="day">09</span>
+					<span class="month">фев</span>
+				</div>
+
+				<div class="all-task-wrap">
+					<div class="task warning">
+						<div class="to-do-time">9:00</div>
+						<div class="task-header flex-container">
+							<span class="icon icon-arrow"></span>
+							<span class="short-task-text">Some task</span>
+							<span class="icon icon-cancel"></span>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<div class="time">9:00</div>
+								<div class="task-icon">
+									<span class="icon icon-bell"></span>
+								</div>
+							</div>
+							<div class="task-text-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<div class="text">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut a nostrum placeat aliquid fugit, accusantium fugiat qui, ex, unde enim eos nihil fuga. Aliquam possimus nihil officia repellat molestias cupiditate.
+								</div>
+							</div>
+							<div class="task-check-row check-done flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Я выполнил задачу</label>
+								</div>
+							</div>
+							<div class="task-check-row check-current flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Задача еще не выполнена</label>
+								</div>
+							</div>
+							<div class="task-edit-row flex-container">
+								<span class="icon icon-edit"></span>
+							</div>
+
+						</div>
+						<div class="task-message deadline">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-warning"></span>
+								</div>
+								<div class="text">
+									<p>Вы не выполнили эту задачу</p>
+								</div>
+							</div>
+						</div>
+						<div class="task-message done">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-star"></span>
+								</div>
+								<div class="text">
+									<p>Поздравляем!</p>
+									<p>Вы справились с задачей</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="task open task-done">
+						<div class="to-do-time">10:00</div>
+						<div class="task-header flex-container">
+							<span class="icon icon-arrow"></span>
+							<span class="short-task-text">Some task</span>
+							<span class="icon icon-cancel"></span>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<div class="time">10:00</div>
+								<div class="task-icon">
+									<span class="icon icon-bell"></span>
+								</div>
+							</div>
+							<div class="task-text-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<div class="text">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut a nostrum placeat aliquid fugit, accusantium fugiat qui, ex, unde enim eos nihil fuga. Aliquam possimus nihil officia repellat molestias cupiditate.
+								</div>
+							</div>	
+							<div class="task-check-row check-done flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Я выполнил задачу</label>
+								</div>
+							</div>
+							<div class="task-check-row check-current flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Задача еще не выполнена</label>
+								</div>
+							</div>
+							<div class="task-edit-row flex-container">
+								<span class="icon icon-edit"></span>
+							</div>
+
+						</div>
+						<div class="task-message deadline">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-warning"></span>
+								</div>
+								<div class="text">
+									<p>Вы не выполнили эту задачу</p>
+								</div>
+							</div>
+						</div>
+						<div class="task-message done">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-star"></span>
+								</div>
+								<div class="text">
+									<p>Поздравляем!</p>
+									<p>Вы справились с задачей</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="task open success task-current">
+						<div class="to-do-time">13:30</div>
+						<div class="task-header flex-container">
+							<span class="icon icon-arrow"></span>
+							<span class="short-task-text">Some task</span>
+							<span class="icon icon-cancel"></span>
+						</div>
+						<div class="task-content-wrap">
+							<div class="time-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-time"></span>
+								</div>
+								<div class="time">13:30</div>
+								<div class="task-icon">
+									<span class="icon icon-bell"></span>
+								</div>
+							</div>
+							<div class="task-text-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-list"></span>
+								</div>
+								<div class="text">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut a nostrum placeat aliquid fugit, accusantium fugiat qui, ex, unde enim eos nihil fuga. Aliquam possimus nihil officia repellat molestias cupiditate.
+								</div>
+							</div>	
+							<div class="task-check-row check-done flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Я выполнил задачу</label>
+								</div>
+							</div>
+							<div class="task-check-row check-current flex-container">
+								<div class="task-icon">
+									<span class="icon icon-check"></span>
+								</div>
+								<div class="check">
+									<input type="checkbox" name="status" id="status">
+									<label for="status">Задача еще не выполнена</label>
+								</div>
+							</div>
+							<div class="task-edit-row flex-container">
+								<span class="icon icon-edit"></span>
+							</div>
+
+						</div>
+						<div class="task-message deadline">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-warning"></span>
+								</div>
+								<div class="text">
+									<p>Вы не выполнили эту задачу</p>
+								</div>
+							</div>
+						</div>
+						<div class="task-message done">
+							<div class="message-row flex-container">
+								<div class="task-icon">
+									<span class="icon icon-star"></span>
+								</div>
+								<div class="text">
+									<p>Поздравляем!</p>
+									<p>Вы справились с задачей</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+</html>

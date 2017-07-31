@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/main.css">
+	<title>login</title>
+</head>
+<body>
+	<div class="form-wrap">
+		<form name="loginForm" novalidate>
+			<div class="input-group-lg flex-container">
+				<div class="lg-icon">
+					<span class="icon icon-account_circle-grey"></span>
+				</div>
+				<div class="text-lg flex-container">
+					<input type="text" name='login' id='e-mail' placeholder='E-mail' required data-regExp="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
+					<label for="e-mail">E-mail</label>
+				</div>
+			</div>
+				
+				<div class="input-group-lg flex-container">
+				<div class="lg-icon">
+					<span class="icon icon-lock-grey"></span>
+				</div>
+				<div class="text-lg flex-container">
+					<input type="password" name='password' id='password' placeholder='Пароль' required data-regExp="^[a-zA-Z0-9]+$">
+					<label for="password">Пароль</label>
+				</div>
+			</div>
+			<div class="input-group-lg">
+				<button type="submit" class="lg-btn">Войти</button>
+			</div>
+			<div class="input-group-lg flex-container lg-check">
+				<input type="checkbox" name="save-password" id="save-password">
+				<label for="save-password">Сохранить пароль</label>
+			</div>
+		</form>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>

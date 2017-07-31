@@ -1,77 +1,55 @@
+@font-face {
+	font-family: 'SF-UI-Display-Bold';
+	src: url('../fonts/SF-UI-Display-Bold/SF-UI-Display-Bold.eot');
+	src: url('../fonts/SF-UI-Display-Bold/SF-UI-Display-Bold.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/SF-UI-Display-Bold/SF-UI-Display-Bold.woff') format('woff'),
+		 url('../fonts/SF-UI-Display-Bold/SF-UI-Display-Bold.ttf') format('truetype'),
+		 url('../fonts/SF-UI-Display-Bold/SF-UI-Display-Bold.svg#SF-UI-Display-Bold') format('svg');
+	font-style: normal;
+	font-weight: normal;
+}
 
 @font-face {
-  font-family: 'sf_ui_displaybold';
-  src: url('../fonts/sf-ui-display-bold-webfont.eot');
-  src: url('../fonts/sf-ui-display-bold-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/sf-ui-display-bold-webfont.woff2') format('woff2'),
-  url('../fonts/sf-ui-display-bold-webfont.woff') format('woff'),
-  url('../fonts/sf-ui-display-bold-webfont.ttf') format('truetype'),
-  url('../fonts/sf-ui-display-bold-webfont.svg#sf_ui_displaybold') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
+	font-family: 'SF-UI-Text-Light';
+	src: url('../fonts/SF-UI-Text-Light/SF-UI-Text-Light.eot');
+	src: url('../fonts/SF-UI-Text-Light/SF-UI-Text-Light.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/SF-UI-Text-Light/SF-UI-Text-Light.woff') format('woff'),
+		 url('../fonts/SF-UI-Text-Light/SF-UI-Text-Light.ttf') format('truetype'),
+		 url('../fonts/SF-UI-Text-Light/SF-UI-Text-Light.svg#SF-UI-Text-Light') format('svg');
+	font-style: normal;
+	font-weight: normal;
 }
 
 
-
-
 @font-face {
-  font-family: 'sf_ui_textlight';
-  src: url('../fonts/sf-ui-text-light-webfont.eot');
-  src: url('../fonts/sf-ui-text-light-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/sf-ui-text-light-webfont.woff2') format('woff2'),
-  url('../fonts/sf-ui-text-light-webfont.woff') format('woff'),
-  url('../fonts/sf-ui-text-light-webfont.ttf') format('truetype'),
-  url('../fonts/sf-ui-text-light-webfont.svg#sf_ui_textlight') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
+	font-family: 'SF-UI-Text-Medium';
+	src: url('../fonts/SF-UI-Text-Medium/SF-UI-Text-Medium.eot');
+	src: url('../fonts/SF-UI-Text-Medium/SF-UI-Text-Medium.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/SF-UI-Text-Medium/SF-UI-Text-Medium.woff') format('woff'),
+		 url('../fonts/SF-UI-Text-Medium/SF-UI-Text-Medium.ttf') format('truetype'),
+		 url('../fonts/SF-UI-Text-Medium/SF-UI-Text-Medium.svg#SF-UI-Text-Medium') format('svg');
+	font-style: normal;
+	font-weight: normal;
 }
 
-
-
-
 @font-face {
-  font-family: 'sf_ui_textmedium';
-  src: url('../fonts/sf-ui-text-medium-webfont.eot');
-  src: url('../fonts/sf-ui-text-medium-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/sf-ui-text-medium-webfont.woff2') format('woff2'),
-  url('../fonts/sf-ui-text-medium-webfont.woff') format('woff'),
-  url('../fonts/sf-ui-text-medium-webfont.ttf') format('truetype'),
-  url('../fonts/sf-ui-text-medium-webfont.svg#sf_ui_textmedium') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
+	font-family: 'SF-UI-Text-Regular';
+	src: url('../fonts/SF-UI-Text-Regular/SF-UI-Text-Regular.eot');
+	src: url('../fonts/SF-UI-Text-Regular/SF-UI-Text-Regular.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/SF-UI-Text-Regular/SF-UI-Text-Regular.woff') format('woff'),
+		 url('../fonts/SF-UI-Text-Regular/SF-UI-Text-Regular.ttf') format('truetype'),
+		 url('../fonts/SF-UI-Text-Regular/SF-UI-Text-Regular.svg#SF-UI-Text-Regular') format('svg');
+	font-style: normal;
+	font-weight: normal;
 }
 
-
-
-
 @font-face {
-  font-family: 'sf_ui_textregular';
-  src: url('../fonts/sf-ui-text-regular-webfont.eot');
-  src: url('../fonts/sf-ui-text-regular-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/sf-ui-text-regular-webfont.woff2') format('woff2'),
-  url('../fonts/sf-ui-text-regular-webfont.woff') format('woff'),
-  url('../fonts/sf-ui-text-regular-webfont.ttf') format('truetype'),
-  url('../fonts/sf-ui-text-regular-webfont.svg#sf_ui_textregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-
-
-
-@font-face {
-  font-family: 'sf_ui_textsemibold';
-  src: url('../fonts/sf-ui-text-semibold-webfont.eot');
-  src: url('../fonts/sf-ui-text-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/sf-ui-text-semibold-webfont.woff2') format('woff2'),
-  url('../fonts/sf-ui-text-semibold-webfont.woff') format('woff'),
-  url('../fonts/sf-ui-text-semibold-webfont.ttf') format('truetype'),
-  url('../fonts/sf-ui-text-semibold-webfont.svg#sf_ui_textsemibold') format('svg');
-  font-weight: normal;
-  font-style: normal;
-
+	font-family: 'SF-UI-Text-Semibold';
+	src: url('../fonts/SF-UI-Text-Semibold/SF-UI-Text-Semibold.eot');
+	src: url('../fonts/SF-UI-Text-Semibold/SF-UI-Text-Semibold.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/SF-UI-Text-Semibold/SF-UI-Text-Semibold.woff') format('woff'),
+		 url('../fonts/SF-UI-Text-Semibold/SF-UI-Text-Semibold.ttf') format('truetype'),
+		 url('../fonts/SF-UI-Text-Semibold/SF-UI-Text-Semibold.svg#SF-UI-Text-Semibold') format('svg');
+	font-style: normal;
+	font-weight: normal;
 }
