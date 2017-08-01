@@ -43,7 +43,7 @@
                 contentType: 'application/json',
                 url: 'http://localhost:8080/login',
                 success: function(res){
-                    self.setToken(res._id, self._savePasswordCheckbox.prop('checked'));
+                    self.setToken(res, self._savePasswordCheckbox.prop('checked'));
                 },
                 error: function(err){
                     console.log(`Sorry, no such user found`);
@@ -51,13 +51,30 @@
             });
         }
 
-        setToken(id, save){
+        setToken(res, save){
             let date = new Date;
             date.setSeconds(date.getSeconds() + 6000000);
-            document.cookie = save ?
-                `_id=${id};expires=${date.toUTCString()}`:
-                `_id=${id};`;
+
+            if(!save){
+                document.cookie = `_id=${res._id};`;
+            } else{
+                document.cookie = `_id=${res._id};expires=${date.toUTCString()}`
+                document.cookie = `login=${res.login};expires=${date.toUTCString()}`
+                document.cookie = `password=${res.password};expires=${date.toUTCString()}`
+            }
             window.location = '/task';
+        }
+
+        autofil(){
+            let saved = document.cookie.split(';');
+            if(saved.length === 3){
+                let data = saved.filter( str => str.charAt(0) !== '_');
+                data.forEach((str) =>{
+                    let key = str.slice( 0, str.indexOf("=")).trim(),
+                        value = str.slice( str.indexOf("=") + 1 );
+                    this._form[0].elements[key].value = value;
+                });
+            }
         }
 
         event(self){
@@ -67,9 +84,11 @@
             this._form.on('submit', (e) =>{
                 self.onSubmit.call(e.target, e, self);
             });
+
         }
 
         init(){
+            this.autofil();
             let self = this;
             this.event(self);
         }

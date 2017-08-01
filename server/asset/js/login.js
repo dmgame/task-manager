@@ -55,7 +55,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     contentType: 'application/json',
                     url: 'http://localhost:8080/login',
                     success: function success(res) {
-                        self.setToken(res._id, self._savePasswordCheckbox.prop('checked'));
+                        self.setToken(res, self._savePasswordCheckbox.prop('checked'));
                     },
                     error: function error(err) {
                         console.log('Sorry, no such user found');
@@ -64,11 +64,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
         }, {
             key: 'setToken',
-            value: function setToken(id, save) {
+            value: function setToken(res, save) {
                 var date = new Date();
                 date.setSeconds(date.getSeconds() + 6000000);
-                document.cookie = save ? '_id=' + id + ';expires=' + date.toUTCString() : '_id=' + id + ';';
+
+                if (!save) {
+                    document.cookie = '_id=' + res._id + ';';
+                } else {
+                    document.cookie = '_id=' + res._id + ';expires=' + date.toUTCString();
+                    document.cookie = 'login=' + res.login + ';expires=' + date.toUTCString();
+                    document.cookie = 'password=' + res.password + ';expires=' + date.toUTCString();
+                }
                 window.location = '/task';
+            }
+        }, {
+            key: 'autofil',
+            value: function autofil() {
+                var _this = this;
+
+                var saved = document.cookie.split(';');
+                if (saved.length === 3) {
+                    var data = saved.filter(function (str) {
+                        return str.charAt(0) !== '_';
+                    });
+                    data.forEach(function (str) {
+                        var key = str.slice(0, str.indexOf("=")).trim(),
+                            value = str.slice(str.indexOf("=") + 1);
+                        _this._form[0].elements[key].value = value;
+                    });
+                }
             }
         }, {
             key: 'event',
@@ -83,6 +107,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
             key: 'init',
             value: function init() {
+                this.autofil();
                 var self = this;
                 this.event(self);
             }
